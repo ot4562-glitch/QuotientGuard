@@ -1,0 +1,50 @@
+{
+  "schema_version": "quotientguard.receipt.v2",
+  "policy_snapshot_id": "fixture-toy-coefficient",
+  "run_id": "toy-coefficient-only",
+  "fixture_provenance": {
+    "kind": "synthetic_coefficient_screen_control",
+    "purpose": "Coefficient-only screening example; not a paper measurement."
+  },
+  "estimator": {
+    "name": "coefficient-screen-demo",
+    "configuration": "demo"
+  },
+  "equivalence_contract": {
+    "description": "Cheap pre-gradient screen."
+  },
+  "classes": [
+    {
+      "class_id": "z-constant",
+      "coefficient_evidence": "exact",
+      "representatives": [
+        {
+          "representative_id": "a",
+          "conditional_probability": 0.4,
+          "effective_coefficient": 2.0
+        },
+        {
+          "representative_id": "b",
+          "conditional_probability": 0.6,
+          "effective_coefficient": 2.0
+        }
+      ]
+    },
+    {
+      "class_id": "z-nonconstant",
+      "coefficient_evidence": "exact",
+      "representatives": [
+        {
+          "representative_id": "x",
+          "conditional_probability": 0.5,
+          "effective_coefficient": 1.0
+        },
+        {
+          "representative_id": "y",
+          "conditional_probability": 0.5,
+          "effective_coefficient": 1.2
+        }
+      ]
+    }
+  ]
+}

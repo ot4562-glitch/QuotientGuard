@@ -1,0 +1,13 @@
+{
+  "benchmark": "sampled_fixed_snapshot_audit",
+  "max_ms": 9.473605000003715,
+  "median_ms": 9.17285899999598,
+  "min_ms": 9.00976600000547,
+  "observations_per_second_at_median": 27908.419828552054,
+  "repeats": 7,
+  "sample_count": 256,
+  "schema_version": "quotientguard.benchmark.v1",
+  "scope_note": "Measures QuotientGuard audit runtime only; it is not an end-to-end trainer overhead percentage.",
+  "score_dimension": 64,
+  "tool_version": "1.0.0"
+}

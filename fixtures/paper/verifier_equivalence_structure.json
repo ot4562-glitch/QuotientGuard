@@ -1,0 +1,44 @@
+{
+  "schema_version": "quotientguard.receipt.v2",
+  "policy_snapshot_id": "fixture-verifier-equivalence-v1",
+  "run_id": "public-verifier-equivalence-structure",
+  "fixture_provenance": {
+    "kind": "paper_relation_structural_control",
+    "purpose": "Tests that distinct decoded strings may share one verifier-defined class without claiming the paper's measured gradient magnitude.",
+    "paper_doi": "10.5281/zenodo.22859044",
+    "research_result": "F8_TFGL_ACTUAL_TRL_VERIFIER_EQUIVALENCE_RESULT_V0_1",
+    "research_artifact_sha256": "d412d46a3c3c7b10b0d5af35b89673558a09ddc074350f5a1e02e4d59366169d"
+  },
+  "estimator": {
+    "name": "equal-path-structural-control",
+    "configuration": "public-control-v1"
+  },
+  "equivalence_contract": {
+    "name": "integer-answer",
+    "version": "1",
+    "description": "Optional leading plus is ignored for integer answer 4."
+  },
+  "policy": {
+    "max_gap_ratio": 0.1
+  },
+  "classes": [
+    {
+      "class_id": "integer:4",
+      "coefficient_evidence": "exact",
+      "representatives": [
+        {
+          "representative_id": "decoded:4",
+          "conditional_probability": 0.5,
+          "effective_coefficient": 1.0,
+          "score": [1.0, 0.0]
+        },
+        {
+          "representative_id": "decoded:+4",
+          "conditional_probability": 0.5,
+          "effective_coefficient": 1.0,
+          "score": [0.0, 1.0]
+        }
+      ]
+    }
+  ]
+}

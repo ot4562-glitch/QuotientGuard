@@ -1,0 +1,39 @@
+{
+  "schema_version": "quotientguard.receipt.v2",
+  "policy_snapshot_id": "fixture-toy-incompatible",
+  "run_id": "toy-incompatible",
+  "fixture_provenance": {
+    "kind": "synthetic_negative_control",
+    "purpose": "Simple exact non-zero-gap example; not a paper measurement."
+  },
+  "estimator": {
+    "name": "representative-dependent-demo",
+    "configuration": "demo"
+  },
+  "equivalence_contract": {
+    "description": "Representatives a and b are reward-equivalent."
+  },
+  "policy": {
+    "max_gap_ratio": 0.1
+  },
+  "classes": [
+    {
+      "class_id": "z-demo",
+      "coefficient_evidence": "exact",
+      "representatives": [
+        {
+          "representative_id": "a",
+          "conditional_probability": 0.5,
+          "effective_coefficient": 1.0,
+          "score": [1.0, 0.0]
+        },
+        {
+          "representative_id": "b",
+          "conditional_probability": 0.5,
+          "effective_coefficient": 2.0,
+          "score": [0.0, 1.0]
+        }
+      ]
+    }
+  ]
+}

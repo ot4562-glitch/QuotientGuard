@@ -1,0 +1,47 @@
+{
+  "schema_version": "trl-sequence-v2",
+  "policy_snapshot_id": "paper-a1-step2",
+  "batch_id": "paper-a1-fixed-batch",
+  "run_id": "paper-a1-equal-length-screen",
+  "fixture_provenance": {
+    "kind": "paper_derived_coefficient_fixture",
+    "paper_doi": "10.5281/zenodo.22859044",
+    "research_line": "A1 equal-length clipping witness"
+  },
+  "source_provenance": {
+    "framework": "trl",
+    "source_commit": "a98fa6a4428f9aae58dfb26d729d7437f662f27a",
+    "source_hash": "e9f5ad165c620c8da1eceade84b00e405c76691d9af363681e8f7cbbfae8a709"
+  },
+  "config": {
+    "loss_type": "grpo",
+    "importance_sampling_level": "sequence",
+    "beta": 0.0,
+    "epsilon_low": 0.2,
+    "epsilon_high": 0.2,
+    "batch_size": 8,
+    "common_divisor": 1.0
+  },
+  "equivalence_contract": {
+    "name": "paper-a1-answer-4",
+    "version": "1",
+    "description": "Two one-token representatives accepted as answer 4 in the paper's equal-length A1 experiment.",
+    "research_doi": "10.5281/zenodo.22859044"
+  },
+  "samples": [
+    {
+      "class_id": "accepted-answer-4",
+      "trajectory_id": "token-19:4",
+      "advantage": 1.0,
+      "sequence_ratio": 1.3488,
+      "completion_length": 1
+    },
+    {
+      "class_id": "accepted-answer-4",
+      "trajectory_id": "token-604:space-4",
+      "advantage": 1.0,
+      "sequence_ratio": 0.8181,
+      "completion_length": 1
+    }
+  ]
+}

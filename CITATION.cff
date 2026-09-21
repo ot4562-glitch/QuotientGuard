@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use QuotientGuard, please cite the research paper and this software."
+title: "QuotientGuard"
+type: software
+authors:
+  - family-names: "Sim"
+    given-names: "Minseong"
+version: 1.0.0
+date-released: 2026-09-21
+license: MIT
+repository-code: "https://github.com/ot4562-glitch/QuotientGuard"
+url: "https://github.com/ot4562-glitch/QuotientGuard"
+references:
+  - type: article
+    title: "Diagnosing Estimator Homomorphism Compatibility in Reinforcement Learning with Verifiable Rewards"
+    authors:
+      - family-names: "Sim"
+        given-names: "Minseong"
+    year: 2026
+    doi: "10.5281/zenodo.22859044"
+    url: "https://zenodo.org/records/22859044"

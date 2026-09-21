@@ -1,0 +1,3 @@
+interface:
+  display_name: "QuotientGuard"
+  short_description: "Audit RL/RLVR estimator compatibility with deterministic certificates"

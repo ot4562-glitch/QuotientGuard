@@ -1,0 +1,35 @@
+name: QuotientGuard Check
+description: Deterministic estimator-compatibility check for RL/RLVR fixtures or receipts
+author: Minseong Sim
+
+inputs:
+  input:
+    description: Path to a QuotientGuard-supported input file in the caller repository
+    required: true
+  output:
+    description: JSON certificate output path
+    required: false
+    default: quotientguard-certificate.json
+  python-version:
+    description: Python version
+    required: false
+    default: "3.12"
+
+outputs:
+  certificate:
+    description: Path to the generated QuotientGuard certificate
+    value: ${{ inputs.output }}
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+    - name: Install QuotientGuard
+      shell: bash
+      run: python -m pip install "${GITHUB_ACTION_PATH}"
+    - name: Run QuotientGuard
+      shell: bash
+      run: quotientguard check "${{ inputs.input }}" --out "${{ inputs.output }}"

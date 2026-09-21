@@ -1,0 +1,73 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v1.0.0"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build tools
+        run: python -m pip install --upgrade pip build
+
+      - name: Run release verification
+        run: |
+          python -m compileall -q quotientguard tests
+          python -m unittest discover -s tests -v
+          python -m quotientguard certify --out certification-result.json
+          python -m quotientguard benchmark --samples 256 --dimension 64 --repeats 7 --out benchmark-result.json
+
+      - name: Build wheel and sdist
+        run: python -m build
+
+      - name: Smoke test built wheel
+        run: |
+          python -m venv /tmp/qg-release-smoke
+          /tmp/qg-release-smoke/bin/python -m pip install dist/quotientguard-1.0.0-py3-none-any.whl
+          /tmp/qg-release-smoke/bin/quotientguard --version
+          /tmp/qg-release-smoke/bin/quotientguard certify
+          /tmp/qg-release-smoke/bin/quotientguard demo
+          /tmp/qg-release-smoke/bin/quotientguard check fixtures/controls/exact_compatible.json
+
+      - name: Package agent-neutral workflow wrapper
+        run: |
+          cd integrations/skill
+          zip -r ../../skill.zip quotientguard
+
+      - name: Generate checksums
+        run: |
+          sha256sum \
+            dist/* \
+            certification-result.json \
+            benchmark-result.json \
+            skill.zip \
+            paper/Sim_2026_Estimator_Homomorphism_Compatibility_RLVR_Preprint.pdf \
+            LICENSE \
+            > SHA256SUMS
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            dist/* \
+            SHA256SUMS \
+            certification-result.json \
+            benchmark-result.json \
+            skill.zip \
+            paper/Sim_2026_Estimator_Homomorphism_Compatibility_RLVR_Preprint.pdf \
+            LICENSE \
+            --title "QuotientGuard v1.0.0" \
+            --notes-file RELEASE_NOTES.md

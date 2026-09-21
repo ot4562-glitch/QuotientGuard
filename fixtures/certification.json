@@ -1,0 +1,62 @@
+{
+  "schema_version": "quotientguard.certification-suite.v1",
+  "name": "QuotientGuard v1 public certification suite",
+  "version": "1",
+  "cases": [
+    {
+      "id": "exact-compatible-control",
+      "input": "controls/exact_compatible.json",
+      "expected": {
+        "policy_status": "PASS",
+        "measured_gap_count": 0,
+        "class_statuses": {
+          "z-control": "CERTIFIED_BY_EXACT_CLASS_CONSTANCY"
+        }
+      }
+    },
+    {
+      "id": "exact-gap-control",
+      "input": "controls/exact_gap.json",
+      "expected": {
+        "policy_status": "FAIL",
+        "measured_gap_count": 1,
+        "class_statuses": {
+          "z-control": "MEASURED_GAP"
+        }
+      }
+    },
+    {
+      "id": "paper-a1-clipping",
+      "input": "paper/a1_equal_length_clipping.json",
+      "expected": {
+        "policy_status": "OBSERVED",
+        "measured_gap_count": 0,
+        "class_statuses": {
+          "accepted-answer-4": "COEFFICIENT_MISMATCH_OBSERVED"
+        }
+      }
+    },
+    {
+      "id": "verifier-equivalence-structure",
+      "input": "paper/verifier_equivalence_structure.json",
+      "expected": {
+        "policy_status": "PASS",
+        "measured_gap_count": 0,
+        "class_statuses": {
+          "integer:4": "CERTIFIED_BY_EXACT_CLASS_CONSTANCY"
+        }
+      }
+    },
+    {
+      "id": "sampled-projected-gap-control",
+      "input": "controls/sampled_projected_gap.jsonl",
+      "expected": {
+        "policy_status": "OBSERVED",
+        "measured_gap_count": 1,
+        "class_statuses": {
+          "accepted-4": "MEASURED_PROJECTED_SAMPLE_GAP"
+        }
+      }
+    }
+  ]
+}

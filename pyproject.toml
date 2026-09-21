@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quotientguard"
+version = "1.0.0"
+description = "Deterministic estimator-compatibility audits and regression tests for RL/RLVR."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{name = "Minseong Sim"}]
+keywords = [
+  "reinforcement-learning",
+  "rlhf",
+  "rlvr",
+  "policy-gradient",
+  "grpo",
+  "ppo",
+  "post-training",
+  "estimator",
+  "audit",
+  "regression-testing"
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+
+[project.urls]
+Homepage = "https://github.com/ot4562-glitch/QuotientGuard"
+Repository = "https://github.com/ot4562-glitch/QuotientGuard"
+Issues = "https://github.com/ot4562-glitch/QuotientGuard/issues"
+Paper = "https://doi.org/10.5281/zenodo.22859044"
+
+[project.scripts]
+quotientguard = "quotientguard.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["quotientguard*"]
+
+[tool.setuptools.package-data]
+quotientguard = [
+  "data/fixtures/*.json",
+  "data/fixtures/controls/*.json",
+  "data/fixtures/controls/*.jsonl",
+  "data/fixtures/paper/*.json"
+]
