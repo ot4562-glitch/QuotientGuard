@@ -55,6 +55,7 @@ jobs:
             skill.zip \
             paper/Sim_2026_Estimator_Homomorphism_Compatibility_RLVR_Preprint.pdf \
             LICENSE \
+            | sed -e 's#  dist/#  #' -e 's#  paper/#  #' \
             > SHA256SUMS
 
       - name: Create GitHub release
