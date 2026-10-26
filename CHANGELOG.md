@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased (documentation and release maintenance)
+
+- Consolidated overlapping guides into five canonical `docs/` files.
+- Added reviewer feedback, scoped next-version ideas and an evidence-labeled upstream PR ledger.
+- Added per-version README/CHANGELOG/package synchronization checks and a version-agnostic tag-release workflow.
+- No change to the already-published v1.1.0 tag, certificate semantics or detector functionality.
+
 ## 1.1.0 - 2026-10-26
 
 ### Added

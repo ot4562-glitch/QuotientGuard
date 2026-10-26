@@ -2,51 +2,33 @@
 
 > **Find gradient updates your reward did not ask for.**
 
-QuotientGuard is a deterministic estimator-compatibility audit and regression-test tool for RL/RLVR training.
+Current stable release: **v1.1.0** ·
+[GitHub Release](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v1.1.0) ·
+[Changelog](CHANGELOG.md) ·
+[Paper](https://doi.org/10.5281/zenodo.22859044)
 
-A reward, verifier, or environment can say two concrete trajectories are equivalent while the production estimator gives them different update treatment. QuotientGuard detects and certifies that mismatch without requiring an LLM, API key, server, or dashboard.
+QuotientGuard is a deterministic, offline **estimator-compatibility and
+objective-aware numerical audit** tool for RL/RLVR. It checks whether
+reward/verifier-equivalent trajectories receive different update treatment,
+and (from v1.1) whether a supplied PPO loss graph agrees with the
+*declared* clipping/masking objective. It is **not** a replacement optimizer,
+a downstream-quality predictor, or an autonomous universal bug finder.
 
-Research basis: **Minseong Sim (2026), _Diagnosing Estimator Homomorphism Compatibility in Reinforcement Learning with Verifiable Rewards_** — DOI **10.5281/zenodo.22859044**. The published PDF is also included in this repository at [`paper/Sim_2026_Estimator_Homomorphism_Compatibility_RLVR_Preprint.pdf`](paper/Sim_2026_Estimator_Homomorphism_Compatibility_RLVR_Preprint.pdf).
-
-## 10-second demo
+## Quick start
 
 ```bash
 pip install .
 quotientguard demo
+quotientguard certify
+quotientguard check fixtures/controls/exact_compatible.json
 ```
 
-Expected shape:
+The demo uses the paper's equal-length A1 case: two verifier-equivalent
+answers share reward, length and advantage but differ in effective
+coefficient because one PPO branch clips and the other remains active.
+A coefficient mismatch is **not automatically a software defect**.
 
-```text
-QuotientGuard
-snapshot: paper-a1-step2
-policy: OBSERVED
-classes: 1 | measured gaps: 0 | certified: 0 | not certified: 1
-- accepted-answer-4: COEFFICIENT_MISMATCH_OBSERVED | coeff_spread=0.102263
-Interpretation: compatibility diagnostic only; no downstream reward/quality claim.
-```
-
-The demo reproduces the paper's equal-length A1 clipping screen: two one-token verifier-equivalent answers have the same length, reward, and advantage, yet one path is clipped while the other remains active.
-
-## What it does
-
-QuotientGuard gives you four evidence layers:
-
-1. **Coefficient screen** — detect representative-dependent estimator treatment.
-2. **Full/projected gap audit** — measure update movement inside a reward/verifier-equivalent class.
-3. **Regression comparison** — detect new gaps or evidence downgrades between trainer versions/configurations.
-4. **Sentinel** — track persistence across separate fixed-policy-snapshot certificates.
-
-Every result is machine-readable and hash-addressed.
-
-## PPO objective-aware auditing (v1.1)
-
-An observed compatibility mismatch can be an intentional optimization effect.
-The new interpretation layer compares **d(negative PPO surrogate loss)/d(current
-log probability)** with the expected sign-dependent clip branch, importance
-correction, mask and constant normalization denominator. It preserves the v1
-coefficient screen and does not reinterpret a research compatibility gap as an
-implementation defect.
+### PPO objective-aware audit (v1.1)
 
 ```bash
 pip install ".[objective]"
@@ -61,7 +43,9 @@ result = audit_objective(
     ObjectiveSpec(reduction="sum"),
     ObjectiveTrace(
         current_log_probs=[[0.4054651081081644, 0.0]],
-        old_log_probs=[[0.0, 0.0]], advantages=[[1.0, 1.0]], mask=[[1, 1]],
+        old_log_probs=[[0.0, 0.0]],
+        advantages=[[1.0, 1.0]],
+        mask=[[1, 1]],
         observed_coefficients=[[0.0, -1.0]],
     ),
     oracle=True,
@@ -69,290 +53,108 @@ result = audit_objective(
 assert result.verdict == "EXPECTED_OBJECTIVE_EFFECT"
 ```
 
-Verdicts are `EXPECTED_OBJECTIVE_EFFECT`, `NUMERICAL_ANOMALY_OBSERVED`,
-`SEMANTIC_MISMATCH_CONFIRMED` and `INSUFFICIENT_EVIDENCE`. A replay anomaly is
-labeled `REFERENCE_REPLAY`, not presented as an executed framework defect.
-Manual/synthetic observations never confirm semantic defects. Exact or
-precision-adjacent clip boundaries, unsupported objectives (including general
-GRPO/ICEPOP), nonconstant detach boundaries and unverified transformations remain
-insufficient. Uniform measured gradient scaling is supported; general parameter
-gradient clipping is not reconstructed.
+Interpretation verdicts:
 
-The optional `ObjectiveRuntimeCapture.record_backward` differentiates the actual
-provided loss graph, preserving it for the trainer's subsequent backward.
-Confirmation additionally needs repeated source-bound framework integration,
-independent reconstruction, executable contract verification and nonsynthetic
-input provenance. These are trusted local integration evidence, not remote
-attestation. No new external framework defect is claimed in this release.
+| Verdict | Meaning |
+| --- | --- |
+| `EXPECTED_OBJECTIVE_EFFECT` | Observations match the supported declared PPO math |
+| `NUMERICAL_ANOMALY_OBSERVED` | Nonfinite/underflow evidence in a supplied execution or reference replay; provenance matters |
+| `SEMANTIC_MISMATCH_CONFIRMED` | Strictly gated repeated, source-bound **actual** integration with executable contract/reconstruction verification |
+| `INSUFFICIENT_EVIDENCE` | Unsupported objective, unverified inputs, clip-boundary ambiguity or missing observations |
 
-See [objective API, math, evidence and limitations](docs/OBJECTIVE_AUDIT.md) and
-[reproducible validation](docs/VALIDATION_V1_1.md).
+A replay event is labeled `REFERENCE_REPLAY`, **not** an executed upstream
+defect. Manually entered/synthetic coefficients never confirm an
+external framework bug. General GRPO/ICEPOP objectives, mixed-precision
+graphs and arbitrary parameter-space transformations are not supported
+by the v1.1 PPO oracle; see [objective audit specification](docs/OBJECTIVE_AUDIT.md).
 
-## Quick start
+## What the product contains
 
-### Check an input
-
-```bash
-quotientguard check fixtures/controls/exact_compatible.json
-quotientguard check fixtures/controls/sampled_projected_gap.jsonl
-quotientguard check fixtures/paper/a1_equal_length_clipping.json
-```
-
-`check` auto-detects:
-- exact QuotientGuard receipts;
-- sampled observation JSONL;
-- the frozen supported TRL sequence fixture format.
-
-### Explain a TRL mechanism
-
-```bash
-quotientguard explain fixtures/paper/a1_equal_length_clipping.json
-```
-
-This reports mechanical facts such as clipping branch, sequence ratio, completion length, normalization denominator, and effective coefficient. It does not invent causal percentages.
-
-### Compare a trainer change
+| Capability | Purpose |
+| --- | --- |
+| Coefficient screen | Show estimator treatment differences inside declared equivalence classes |
+| Full/projected compatibility gap | Audit estimator movement within an equivalence class, with conservative sketch semantics |
+| `compare` and Sentinel | Compare trainer revisions and track gaps across *separate* fixed-policy-snapshot certificates |
+| Objective-aware PPO (v1.1) | Explain expected clip effects versus numerical anomalies using optional PyTorch forward/backward |
+| Explicit runtime adapters | Record a trainer's actual coefficients without guessing upstream internals |
+| Frozen TRL adapter | Source-hash-gated reconstruction of a specific historical GRPO/BNPO/Dr.GRPO path |
+| Deterministic evidence | Machine-readable, SHA-256-addressed certificates and reports, user-defined CI policies |
 
 ```bash
 quotientguard compare baseline.json candidate.json --fail-on-new-gap
-```
-
-Without a user policy, differences are observations. With an explicit policy, CI can fail.
-
-### Run the public certification suite
-
-```bash
-quotientguard certify
-```
-
-The v1 suite contains:
-- exact compatible positive control;
-- exact measured-gap negative control;
-- paper A1 clipping fixture;
-- verifier-equivalence structural fixture using `"4"` and `"+4"`;
-- sampled projected-gap control.
-
-Synthetic controls are labeled as synthetic and are never presented as paper measurements.
-
-## Framework integrations
-
-### Frozen reconstructed TRL path
-
-The reconstructed TRL adapter is deliberately narrow and fail-closed.
-
-Frozen source:
-- commit: `a98fa6a4428f9aae58dfb26d729d7437f662f27a`;
-- `trl/trainer/grpo_trainer.py` SHA-256:
-  `e9f5ad165c620c8da1eceade84b00e405c76691d9af363681e8f7cbbfae8a709`.
-
-Verify a source file:
-
-```bash
+quotientguard explain fixtures/paper/a1_equal_length_clipping.json
+quotientguard sentinel certs/step-*.json --max-gap-ratio 0.05 --require-same-estimator
 quotientguard verify-source /path/to/trl/trainer/grpo_trainer.py
 ```
 
-A missing or different hash is rejected.
+Core CLI/certification requires no runtime dependencies. The optional
+`objective` extra installs PyTorch for reference replay. Exact vs
+sampled evidence, realized coefficients vs expected class means, and
+full vs projected score spaces are **never silently conflated**.
 
-### verl / OpenRLHF / custom trainers
+### Code map for contributors and coding agents
 
-For framework versions whose loss semantics are not frozen by QuotientGuard, use explicit runtime capture: pass the scalar coefficient actually consumed at the loss/gradient contribution point.
+| Area | Canonical implementation |
+| --- | --- |
+| Compatibility math and sampled audit | `quotientguard/core.py`, `observations.py`, `sampled.py` |
+| Evidence identities, reports, certificates | `schema.py`, `provenance.py`, `report.py`, `certification.py` |
+| PPO semantics and PyTorch oracle | `objective.py`, `objective_torch.py`, `objective_runtime.py` |
+| Framework support | `quotientguard/adapters/`, `source_manifests.py` |
+| CLI, comparisons and Sentinel | `cli.py`, `compare.py`, `sentinel.py` |
+| Tests and release gates | `tests/`, `tools/validate_release.py`, `tools/check_release_docs.py` |
 
-```python
-from quotientguard import VerlRuntimeCapture
+## Verified upstream fixes
 
-capture = VerlRuntimeCapture(
-    policy_snapshot_id="step-1200",
-    framework_version="your-version",
-)
+**No merged upstream fixes are eligible for this table as of 2026-10-27.**
 
-capture.record(
-    batch_id="batch-17",
-    sample_index=0,
-    class_id="answer:4",
-    trajectory_id="trajectory-sha256",
-    realized_coefficient=H_i,
-    state_consuming_point="loss_contribution",
-    score=score_sketch,
-)
+A submitted PR is not a merged fix, and a QuotientGuard-assisted
+source-level audit is not autonomous discovery. This section exists
+to record **verified, upstream-merged** fixes as they arrive.
 
-certificate = capture.certificate()
-```
+| Repository | Merged upstream PR | Demonstrated fix | QuotientGuard's verified role | Evidence |
+| --- | --- | --- | --- | --- |
+| *No qualifying merged PRs yet* | — | — | — | — |
 
-The same stable explicit-capture surface is available as:
-- `OpenRLHFRuntimeCapture`;
-- `CallbackRuntimeCapture` for arbitrary trainers.
+To add an entry, first verify the upstream merge commit/date, the
+reproduction and relevant test evidence, then label its provenance
+accurately as **QG-assisted triage**, **native QG runtime audit**, or
+**autonomous discovery** only when independently demonstrated. Record
+open, withdrawn and unverified work in the
+[upstream evidence ledger](docs/FEEDBACK.md#upstream-contribution-tracker)
+rather than inflating product specifications. A merged external code
+fix is evidence of accepted contribution, **not** proof that the
+QuotientGuard tool autonomously found or certified the bug.
 
-This design avoids guessing changing upstream internals.
+## Versions and release discipline
 
-## Equivalence contracts
+| Version | Released capabilities | Evidence |
+| --- | --- | --- |
+| [v1.1.0](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v1.1.0) | Optional PPO objective-aware interpretation, backward replay, numerical diagnostics; original compatibility semantics retained | [v1.1 validation](docs/VALIDATION_V1_1.md) |
+| [v1.0.0](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v1.0.0) | Exact/sampled compatibility, source-bound TRL adapter, regression/CI, Sentinel | [frozen benchmark](benchmarks/README.md) |
 
-The mathematical core does not use an LLM to decide semantic equivalence.
+Future versions must update the **current stable release line**, this
+version table, `pyproject.toml`, `CHANGELOG.md`, and release evidence
+together. The [release-doc metadata check](tools/check_release_docs.py)
+is a CI gate. **Do not change historical tags** to rewrite prior
+evidence. Roadmap and reviewer feedback are tracked separately and
+are not claims of shipped functionality.
 
-```python
-from quotientguard import IntegerAnswerContract
+## Documentation (minimal canonical set)
 
-contract = IntegerAnswerContract()
+- [Reference](docs/REFERENCE.md): estimator math, evidence levels,
+  certificates, sketches, Sentinel, limitations and research scope
+- [Objective audit](docs/OBJECTIVE_AUDIT.md): v1.1 PPO contracts,
+  oracle, runtime capture and diagnostic limitations
+- [Integrations & CI](docs/INTEGRATIONS.md): framework adapters,
+  frozen TRL identity and verifiable test hooks
+- [v1.1 validation](docs/VALIDATION_V1_1.md): historical release gate
+  results; not a live third-party bug benchmark
+- [Engineering feedback & upstream ledger](docs/FEEDBACK.md): reviewer
+  feedback, future improvements and PR status snapshot
 
-assert contract.classify("4") == contract.classify("+4")
-```
-
-You can also use:
-- `VerifierContract`;
-- `DecodedTextContract`;
-- precomputed `class_id` values from your environment.
-
-## Evidence semantics
-
-QuotientGuard intentionally separates evidence strength.
-
-Important statuses include:
-
-- `CERTIFIED_BY_EXACT_CLASS_CONSTANCY` — exact class-constant coefficient sufficient condition.
-- `COEFFICIENT_MISMATCH_OBSERVED` — sampled/realized coefficient mismatch inside one class.
-- `MEASURED_GAP` — non-zero exact full-score compatibility gap.
-- `MEASURED_PROJECTED_GAP` — non-zero exact projected component.
-- `MEASURED_SAMPLE_GAP` / `MEASURED_PROJECTED_SAMPLE_GAP` — non-zero fixed-snapshot sample gap.
-- `PROJECTED_ZERO_NOT_CERTIFIED` and sampled zero variants — a zero projection/sample is not promoted into a full-space/population certificate.
-
-See [docs/CERTIFICATES.md](docs/CERTIFICATES.md).
-
-## Batch-aware uncertainty
-
-Sampled direct-gap audits use leave-one-batch-out cluster jackknife standard errors. Rows are not treated as iid when `batch_id` coupling is present.
-
-## Sentinel
-
-Sentinel consumes a sequence of already-issued snapshot-level certificates.
-
-```bash
-quotientguard sentinel certs/step-*.json \
-  --out sentinel.json \
-  --max-gap-ratio 0.05 \
-  --max-consecutive-gap-events 1 \
-  --require-same-estimator
-```
-
-It never pools raw observations across optimizer steps and makes no assumption that compatibility gaps grow monotonically.
-
-## CI
-
-QuotientGuard has no runtime dependencies for the core path.
-
-Use the CLI directly:
-
-```bash
-quotientguard check fixture.json --out certificate.json
-```
-
-Or use the repository's composite GitHub Action:
-
-```yaml
-- uses: ot4562-glitch/QuotientGuard@v1.0.0
-  with:
-    input: fixtures/estimator.json
-    output: quotientguard-certificate.json
-```
-
-Python assertion helpers are also available:
-
-```python
-from quotientguard import assert_no_measured_gap
-
-assert_no_measured_gap(certificate)
-```
-
-See [docs/CI.md](docs/CI.md).
-
-## CLI
-
-Public surface:
-
-```text
-quotientguard demo
-quotientguard check INPUT
-quotientguard compare BASELINE CANDIDATE
-quotientguard explain INPUT
-quotientguard sentinel CERTS...
-quotientguard certify MANIFEST
-quotientguard verify-source SOURCE_FILE
-quotientguard benchmark
-```
-
-Advanced compatibility commands:
-- `audit`;
-- `aggregate`;
-- `trl-receipt`.
-
-## Deterministic score sketches
-
-`HashProjection` provides a dependency-free deterministic linear hash-sign projection.
-
-A non-zero projected gap proves a non-zero component exists in the observed source space. A zero projected gap does **not** certify the unobserved full space.
-
-## Performance
-
-The repository includes a repeatable audit microbenchmark:
-
-```bash
-quotientguard benchmark --samples 256 --dimension 64 --repeats 7
-```
-
-Benchmark numbers measure QuotientGuard audit runtime only, not end-to-end trainer overhead.
-
-The frozen v1.0 local run (256 observations, 64-dimensional scores, 7 repeats) measured a 9.173 ms median on Python 3.14.4 under WSL2. See [benchmarks/README.md](benchmarks/README.md) for the environment and limitations.
-
-## What QuotientGuard does not claim
-
-QuotientGuard does **not** claim that:
-- every measured gap harms downstream reward or quality;
-- every non-constant coefficient causes a harmful update;
-- removing a measured gap improves task performance;
-- generic clipping or response-length bias is newly discovered;
-- a zero sketch certifies the full model;
-- it is a replacement optimizer;
-- it is a legal patentability determination.
-
-## Final v1.0 scope
-
-The public v1.0 scope is frozen. There is no feature roadmap.
-
-Intentionally out of scope:
-- GUI/dashboard;
-- hosted service;
-- LLM semantic clustering in the mathematical core;
-- automatic correction;
-- automatic optimizer replacement.
-
-See [docs/FINAL_SCOPE.md](docs/FINAL_SCOPE.md).
-
-## Documentation
-
-- [Concepts](docs/CONCEPTS.md)
-- [Certificates and statuses](docs/CERTIFICATES.md)
-- [Framework integrations](docs/INTEGRATIONS.md)
-- [TRL reconstructed adapter](docs/TRL_SEQUENCE_ADAPTER.md)
-- [Runtime capture](docs/RUNTIME_CAPTURE.md)
-- [Score sketches and Sentinel](docs/SKETCH_SENTINEL.md)
-- [CI and regression testing](docs/CI.md)
-- [Research relationship](docs/PAPER.md)
-- [What QuotientGuard is and is not](docs/COMPARISON.md)
-- [Platform validation](docs/PLATFORM.md)
-- [Frozen v1.0 benchmark](benchmarks/README.md)
-
-## Citation
-
-```bibtex
-@misc{sim2026quotientguard,
-  author       = {Minseong Sim},
-  title        = {QuotientGuard: Deterministic Estimator-Compatibility Audits for RL/RLVR},
-  year         = {2026},
-  note         = {Software derived from Diagnosing Estimator Homomorphism Compatibility in Reinforcement Learning with Verifiable Rewards},
-  doi          = {10.5281/zenodo.22859044}
-}
-```
-
-## License
-
-QuotientGuard software is licensed under the [MIT License](LICENSE).
-
-The included research paper is the Zenodo-published preprint and is distributed under **CC BY 4.0**, matching the Zenodo record for DOI `10.5281/zenodo.22859044`.
+Source of record for released functionality: [CHANGELOG.md](CHANGELOG.md).
+Research: **Minseong Sim (2026)**, *Diagnosing Estimator Homomorphism
+Compatibility in Reinforcement Learning with Verifiable Rewards*,
+DOI [10.5281/zenodo.22859044](https://doi.org/10.5281/zenodo.22859044).
+The [included preprint](paper/Sim_2026_Estimator_Homomorphism_Compatibility_RLVR_Preprint.pdf)
+is under CC BY 4.0; the software is [MIT licensed](LICENSE).

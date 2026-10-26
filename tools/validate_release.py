@@ -16,6 +16,8 @@ import tempfile
 import venv
 
 
+from check_release_docs import check_release_docs
+
 ROOT = Path(__file__).resolve().parents[1]
 WORK = ROOT / ".venv" / "release-validation"
 
@@ -37,6 +39,7 @@ def python_in(path):
 
 
 def main():
+    version, _ = check_release_docs()
     import torch
     WORK.mkdir(parents=True, exist_ok=True)
     full = run("full-suite", [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-q"])
@@ -45,9 +48,9 @@ def main():
     count = int(re.search(r"Ran (\d+) tests", full).group(1))
     run("compile", [sys.executable, "-m", "compileall", "-q", "quotientguard", "tests", "tools"])
     run("certification", [sys.executable, "-m", "quotientguard", "certify", "--out",
-        "benchmarks/certification-v1.1.0.json"])
+        f"benchmarks/certification-v{version}.json"])
     run("objective-benchmark", [sys.executable, "-m", "quotientguard", "objective-benchmark", "--out",
-        "benchmarks/objective-v1.1.0.json"])
+        f"benchmarks/objective-v{version}.json"])
     smokes = [["--version"], ["demo"], ["check", "fixtures/controls/exact_compatible.json"],
         ["check", "fixtures/controls/sampled_projected_gap.jsonl"],
         ["explain", "fixtures/paper/a1_equal_length_clipping.json"],
@@ -56,8 +59,8 @@ def main():
     for index, args in enumerate(smokes):
         run(f"readme-smoke-{index}", [sys.executable, "-m", "quotientguard", *args])
     run("build", [sys.executable, "-m", "build"])
-    wheel = ROOT / "dist/quotientguard-1.1.0-py3-none-any.whl"
-    sdist = ROOT / "dist/quotientguard-1.1.0.tar.gz"
+    wheel = ROOT / f"dist/quotientguard-{version}-py3-none-any.whl"
+    sdist = ROOT / f"dist/quotientguard-{version}.tar.gz"
     for kind, package in (("wheel", wheel), ("sdist", sdist)):
         env = Path(tempfile.mkdtemp(prefix=kind + "-env-", dir=WORK))
         venv.EnvBuilder(with_pip=True).create(env)
@@ -68,7 +71,7 @@ def main():
         # Imported package must be the installed copy, not the source checkout.
         run(kind + "-identity", [exe, "-c",
             "import quotientguard as q; from pathlib import Path; "
-            "assert q.__version__ == '1.1.0'; "
+            f"assert q.__version__ == '{version}'; "
             "assert 'site-packages' in str(Path(q.__file__)); print(q.__version__)"], cwd=WORK)
         run(kind + "-objective-json", [exe, "-m", "quotientguard", "objective-audit",
             ROOT / "examples/ppo-objective.json", "--json"], cwd=WORK)
@@ -79,15 +82,15 @@ def main():
         ROOT / "examples/ppo-objective.json", "--oracle", "--json"], cwd=WORK)
     run("torch-wheel-identity", [sys.executable, "-c",
         "import quotientguard as q; assert 'site-packages' in q.__file__; print(q.__version__)"], cwd=WORK)
-    benchmark = json.loads((ROOT / "benchmarks/objective-v1.1.0.json").read_text())
-    receipt = {"outcome": "PASS", "version": "1.1.0", "python": sys.version.split()[0],
+    benchmark = json.loads((ROOT / f"benchmarks/objective-v{version}.json").read_text())
+    receipt = {"outcome": "PASS", "version": version, "python": sys.version.split()[0],
         "torch": torch.__version__, "platform": sys.platform, "tests_passed": count,
         "tests_skipped": 0, "certification_cases_passed": 5,
         "controls": benchmark["controls"]["metrics"], "holdout": benchmark["holdout"]["metrics"],
         "dtypes": benchmark["environment"]["dtypes"], "wheel_install": "PASS",
         "sdist_install": "PASS", "installed_wheel_oracle": "PASS",
         "readme_cli_smokes": len(smokes), "build": "PASS"}
-    (ROOT / "benchmarks/release-validation-v1.1.0.json").write_text(
+    (ROOT / f"benchmarks/release-validation-v{version}.json").write_text(
         json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     # These hashes describe the validated binaries, not subsequently rebuilt copies.
     sums = "".join(f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}\n" for p in (wheel, sdist))
