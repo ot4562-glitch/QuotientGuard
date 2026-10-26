@@ -1,0 +1,45 @@
+{
+  "build": "PASS",
+  "certification_cases_passed": 5,
+  "controls": {
+    "case_count": 68,
+    "false_negative_rate": 0.0,
+    "false_negatives": 0,
+    "false_positive_rate": 0.0,
+    "false_positives": 0,
+    "insufficient_cases": 8,
+    "normal_cases": 40,
+    "normal_coefficient_spread_cases_explained": 26,
+    "numerical_cases": 20,
+    "passed": 68
+  },
+  "dtypes": [
+    "float16",
+    "bfloat16",
+    "float32",
+    "float64"
+  ],
+  "holdout": {
+    "case_count": 164,
+    "false_negative_rate": 0.0,
+    "false_negatives": 0,
+    "false_positive_rate": 0.0,
+    "false_positives": 0,
+    "insufficient_cases": 8,
+    "normal_cases": 136,
+    "normal_coefficient_spread_cases_explained": 116,
+    "numerical_cases": 20,
+    "passed": 164
+  },
+  "installed_wheel_oracle": "PASS",
+  "outcome": "PASS",
+  "platform": "win32",
+  "python": "3.12.10",
+  "readme_cli_smokes": 6,
+  "sdist_install": "PASS",
+  "tests_passed": 103,
+  "tests_skipped": 0,
+  "torch": "2.14.1+cpu",
+  "version": "1.1.0",
+  "wheel_install": "PASS"
+}

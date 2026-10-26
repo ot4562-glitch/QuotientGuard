@@ -58,6 +58,16 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     sub = parser.add_subparsers(dest="command", required=True)
 
+    objective = sub.add_parser("objective-audit", help="interpret a declared PPO objective trace")
+    objective.add_argument("input", type=Path)
+    objective.add_argument("--oracle", action="store_true", help="execute independent torch forward/backward")
+    objective.add_argument("--out", type=Path)
+    objective.add_argument("--markdown", type=Path)
+    objective.add_argument("--json", action="store_true")
+
+    objective_bench = sub.add_parser("objective-benchmark", help="independent PPO controls and seeded holdout")
+    objective_bench.add_argument("--out", type=Path)
+
     check = sub.add_parser(
         "check",
         help="auto-detect a receipt, sampled observation log, or supported trainer fixture",
@@ -177,6 +187,29 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+
+    if args.command == "objective-audit":
+        from .objective import ObjectiveSpec, ObjectiveTrace, audit_objective, objective_report
+        payload = _load_json(args.input)
+        result = audit_objective(ObjectiveSpec(**payload["spec"]),
+                                 ObjectiveTrace(**payload["trace"]), oracle=args.oracle)
+        output = result.to_dict()
+        if args.out:
+            _write_json(args.out, output)
+        if args.markdown:
+            args.markdown.parent.mkdir(parents=True, exist_ok=True)
+            args.markdown.write_text(objective_report(result), encoding="utf-8")
+        print(json.dumps(output, indent=2, sort_keys=True, allow_nan=False)
+              if args.json else objective_report(result))
+        return 1 if result.verdict in {"NUMERICAL_ANOMALY_OBSERVED", "SEMANTIC_MISMATCH_CONFIRMED"} else 0
+
+    if args.command == "objective-benchmark":
+        from .objective_benchmark import run_objective_benchmark
+        result = run_objective_benchmark()
+        if args.out:
+            _write_json(args.out, result)
+        print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
+        return 0 if result["outcome"] == "PASS" else 1
 
     if args.command == "check":
         certificate = check_path(args.input)

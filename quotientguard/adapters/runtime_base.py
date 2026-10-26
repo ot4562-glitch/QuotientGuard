@@ -8,6 +8,7 @@ Framework metadata is provenance only.
 from __future__ import annotations
 
 from typing import Any, Callable
+import copy
 
 from ..sampled import audit_sampled_observations
 
@@ -56,6 +57,14 @@ class FrameworkRuntimeCapture:
         self.score_kind = score_kind
         self.snapshot_metadata = dict(snapshot_metadata or {})
         self._observations: list[dict[str, Any]] = []
+        self._objective_audits: list[dict[str, Any]] = []
+
+    def attach_objective_audit(self, result) -> None:
+        """Attach an independent diagnostic without changing compatibility evidence."""
+        from ..objective import ObjectiveAuditResult
+        if not isinstance(result, ObjectiveAuditResult):
+            raise TypeError("expected ObjectiveAuditResult")
+        self._objective_audits.append(result.to_dict())
 
     def record(
         self,
@@ -124,7 +133,7 @@ class FrameworkRuntimeCapture:
             "coefficient_semantics": "explicit_runtime_value",
             "reconstruction_validation": False,
         }
-        return audit_sampled_observations(
+        certificate = audit_sampled_observations(
             self._observations,
             run_id=run_id,
             estimator=estimator,
@@ -133,3 +142,12 @@ class FrameworkRuntimeCapture:
             policy=policy,
             snapshot_metadata=self.snapshot_metadata,
         )
+        if self._objective_audits:
+            from ..provenance import sha256_json
+            certificate["objective_interpretation"] = {
+                "schema_version": "quotientguard-objective-sidecar-v1",
+                "audits": copy.deepcopy(self._objective_audits),
+            }
+            del certificate["certificate_sha256"]
+            certificate["certificate_sha256"] = sha256_json(certificate)
+        return certificate

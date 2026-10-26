@@ -8,6 +8,44 @@ permissions:
   contents: read
 
 jobs:
+  objective:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install CPU torch and build dependencies
+        run: |
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install ".[objective]" build
+      - name: Mandatory torch import (no skipped objective gate)
+        run: python -c "import torch; print(torch.__version__)"
+      - name: Full suite with four-dtype objective controls
+        run: python -m unittest discover -s tests -v
+      - name: Independent controls and holdout
+        run: quotientguard objective-benchmark --out objective-benchmark.json
+      - name: Public certification
+        run: python -m quotientguard certify
+      - name: Build wheel and source distribution
+        run: python -m build
+      - name: Installed-wheel smoke outside checkout
+        shell: bash
+        run: |
+          python -m venv /tmp/qg-wheel
+          /tmp/qg-wheel/bin/python -m pip install dist/*.whl
+          cd /tmp
+          /tmp/qg-wheel/bin/quotientguard --version
+          /tmp/qg-wheel/bin/quotientguard demo
+          /tmp/qg-wheel/bin/quotientguard certify
+      - name: Evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: objective-evidence
+          path: |
+            objective-benchmark.json
+            dist/*
+
   test:
     strategy:
       fail-fast: false

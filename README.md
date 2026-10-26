@@ -39,6 +39,55 @@ QuotientGuard gives you four evidence layers:
 
 Every result is machine-readable and hash-addressed.
 
+## PPO objective-aware auditing (v1.1)
+
+An observed compatibility mismatch can be an intentional optimization effect.
+The new interpretation layer compares **d(negative PPO surrogate loss)/d(current
+log probability)** with the expected sign-dependent clip branch, importance
+correction, mask and constant normalization denominator. It preserves the v1
+coefficient screen and does not reinterpret a research compatibility gap as an
+implementation defect.
+
+```bash
+pip install ".[objective]"
+quotientguard objective-audit examples/ppo-objective.json --oracle --out objective.json --markdown objective.md
+quotientguard objective-benchmark --out objective-benchmark.json
+```
+
+```python
+from quotientguard import ObjectiveSpec, ObjectiveTrace, audit_objective
+
+result = audit_objective(
+    ObjectiveSpec(reduction="sum"),
+    ObjectiveTrace(
+        current_log_probs=[[0.4054651081081644, 0.0]],
+        old_log_probs=[[0.0, 0.0]], advantages=[[1.0, 1.0]], mask=[[1, 1]],
+        observed_coefficients=[[0.0, -1.0]],
+    ),
+    oracle=True,
+)
+assert result.verdict == "EXPECTED_OBJECTIVE_EFFECT"
+```
+
+Verdicts are `EXPECTED_OBJECTIVE_EFFECT`, `NUMERICAL_ANOMALY_OBSERVED`,
+`SEMANTIC_MISMATCH_CONFIRMED` and `INSUFFICIENT_EVIDENCE`. A replay anomaly is
+labeled `REFERENCE_REPLAY`, not presented as an executed framework defect.
+Manual/synthetic observations never confirm semantic defects. Exact or
+precision-adjacent clip boundaries, unsupported objectives (including general
+GRPO/ICEPOP), nonconstant detach boundaries and unverified transformations remain
+insufficient. Uniform measured gradient scaling is supported; general parameter
+gradient clipping is not reconstructed.
+
+The optional `ObjectiveRuntimeCapture.record_backward` differentiates the actual
+provided loss graph, preserving it for the trainer's subsequent backward.
+Confirmation additionally needs repeated source-bound framework integration,
+independent reconstruction, executable contract verification and nonsynthetic
+input provenance. These are trusted local integration evidence, not remote
+attestation. No new external framework defect is claimed in this release.
+
+See [objective API, math, evidence and limitations](docs/OBJECTIVE_AUDIT.md) and
+[reproducible validation](docs/VALIDATION_V1_1.md).
+
 ## Quick start
 
 ### Check an input

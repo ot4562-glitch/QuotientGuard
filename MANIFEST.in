@@ -15,3 +15,4 @@ recursive-include integrations/skill *
 recursive-include paper *.md *.pdf
 recursive-include .github/workflows *.yml
 recursive-include tests *.py
+recursive-include tools *.py

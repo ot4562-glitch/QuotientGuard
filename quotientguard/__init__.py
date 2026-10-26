@@ -34,8 +34,14 @@ from .testing import (
     assert_policy_passed,
 )
 from .version import __version__
+from .objective import ObjectiveSpec, ObjectiveTrace, ObjectiveAuditResult, audit_objective, objective_report
+from .objective_runtime import ObjectiveRuntimeCapture
+from .objective_benchmark import run_objective_benchmark
 
 __all__ = [
+    "run_objective_benchmark",
+    "ObjectiveRuntimeCapture",
+    "ObjectiveSpec", "ObjectiveTrace", "ObjectiveAuditResult", "audit_objective", "objective_report",
     "audit_receipt",
     "audit_class",
     "audit_sampled_observations",

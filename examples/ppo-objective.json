@@ -1,0 +1,11 @@
+{
+  "spec": {"objective": "ppo_clipped", "reduction": "sum", "dtype": "float64"},
+  "trace": {
+    "current_log_probs": [[0.4054651081081644, 0.0]],
+    "old_log_probs": [[0.0, 0.0]],
+    "advantages": [[1.0, 1.0]],
+    "mask": [[1, 1]],
+    "observed_coefficients": [[0.0, -1.0]],
+    "provenance": {"execution_kind": "SYNTHETIC_EXAMPLE", "synthetic_inputs": true}
+  }
+}

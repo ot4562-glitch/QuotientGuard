@@ -1,5 +1,49 @@
 # Changelog
 
+## 1.1.0 - 2026-10-26
+
+### Added
+
+- Typed PPO objective specifications, traces and independently hashed diagnostic
+  results with expected/observed derivatives, clip branches, masks and provenance.
+- Optional PyTorch forward/backward replay and actual loss-graph derivative capture.
+- Four verdicts separating expected effects, numerical anomalies, verified semantic
+  mismatches and insufficient evidence, with conservative runtime confirmation gates.
+- Token and sequence-product ratios, detached token/sequence importance corrections,
+  explicit normalization and measured uniform gradient scaling.
+- `objective-audit` JSON/Markdown CLI and independent seeded `objective-benchmark`.
+- Float16, BFloat16, Float32 and Float64 CPU numerical regression controls.
+
+### Changed
+
+- Added a mathematical interpretation layer above the unchanged v1 compatibility
+  screen. Intentional PPO clipping can explain a coefficient spread without
+  removing its research compatibility observation.
+- Added optional `objective` dependencies; base audit/certify remains dependency-free.
+
+### Fixed
+
+- Diagnose exp overflow/underflow, masked nonfinite propagation, finite-product
+  overflow and nonfinite losses/gradients without sanitizing evidence.
+- Preserve exact excluded-token zero checks and reject ambiguous clip boundaries.
+
+### Compatibility
+
+- Existing v1 APIs, CLI commands and certificate v2 evidence meanings remain.
+- Objective diagnostics use their own v1 schema. Optional attached sidecars are
+  included in the certificate hash; existing certificate fields are not repurposed.
+- Frozen reconstructed TRL/GRPO source manifests and semantics remain unchanged.
+
+### Known Limitations
+
+- General GRPO/ICEPOP, mixed-precision graphs and arbitrary gradient transformations
+  are unsupported. Clip-boundary conventions remain insufficient evidence.
+- Semantic verification trusts executable integration contracts and input provenance;
+  a source hash alone is not semantic proof. Synthetic/manual results cannot confirm
+  a framework defect. No new external framework defect is claimed.
+- Historical ten-repository candidate results were not rerun; their seven candidates
+  are not benchmark labels. Holdout is a separate seed from the same local generator.
+
 ## 1.0.0 - 2026-09-21
 
 First feature-frozen public release.

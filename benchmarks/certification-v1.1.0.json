@@ -1,0 +1,54 @@
+{
+  "cases": [
+    {
+      "certificate_sha256": "c93f59a5afb7004bb4a72245e7ebdb1fd2452517913f47e18c10c4d244613349",
+      "id": "exact-compatible-control",
+      "input": "controls/exact_compatible.json",
+      "outcome": "PASS",
+      "violations": []
+    },
+    {
+      "certificate_sha256": "bf6f3eb657475ab4697a4b920ad636e337bbe4f507a4b81abc131d669392d304",
+      "id": "exact-gap-control",
+      "input": "controls/exact_gap.json",
+      "outcome": "PASS",
+      "violations": []
+    },
+    {
+      "certificate_sha256": "254eb5d484f87685bbe1669508b78eb080d6ae6d1e32c5b4d03e0f59fc31891e",
+      "id": "paper-a1-clipping",
+      "input": "paper/a1_equal_length_clipping.json",
+      "outcome": "PASS",
+      "violations": []
+    },
+    {
+      "certificate_sha256": "9e581487212df190f32ca89d0b00dd80ce02cd68d20fc976c47e2496f78c7e32",
+      "id": "verifier-equivalence-structure",
+      "input": "paper/verifier_equivalence_structure.json",
+      "outcome": "PASS",
+      "violations": []
+    },
+    {
+      "certificate_sha256": "a7f46039bfa11b92312a34309694a79fc76f5014d05b40433c2147d9b67ed263",
+      "id": "sampled-projected-gap-control",
+      "input": "controls/sampled_projected_gap.jsonl",
+      "outcome": "PASS",
+      "violations": []
+    }
+  ],
+  "certification_sha256": "836abbadec63358ee9dc5f1b1fb34eed338dfe4ae90afcfc61f040f6b62344b7",
+  "manifest_sha256": "1aea5610b5346459fabe0a2b01ee299becc9b49a5b99c4767304640d5b73fd38",
+  "schema_version": "quotientguard.certification-result.v1",
+  "suite_name": "QuotientGuard v1 public certification suite",
+  "suite_version": "1",
+  "summary": {
+    "case_count": 5,
+    "fail_count": 0,
+    "outcome": "PASS",
+    "pass_count": 5
+  },
+  "tool": {
+    "name": "QuotientGuard",
+    "version": "1.1.0"
+  }
+}

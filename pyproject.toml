@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "quotientguard"
-version = "1.0.0"
+version = "1.1.0"
 description = "Deterministic estimator-compatibility audits and regression tests for RL/RLVR."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -41,6 +41,9 @@ Paper = "https://doi.org/10.5281/zenodo.22859044"
 
 [project.scripts]
 quotientguard = "quotientguard.cli:main"
+
+[project.optional-dependencies]
+objective = ["torch>=2.5", "numpy>=1.24"]
 
 [tool.setuptools.packages.find]
 include = ["quotientguard*"]

@@ -1,5 +1,10 @@
 # Certificates and status semantics
 
+v1.1 adds an optional [objective interpretation](OBJECTIVE_AUDIT.md), with a
+separately versioned sidecar. All compatibility statuses below retain their
+original meaning. An expected PPO clip effect can coexist with an observed
+coefficient mismatch; it does not invalidate or silently upgrade that evidence.
+
 Every QuotientGuard result is tied to:
 - a fixed policy snapshot;
 - estimator provenance/fingerprint;

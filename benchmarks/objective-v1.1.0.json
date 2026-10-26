@@ -1,0 +1,1968 @@
+{
+  "controls": {
+    "cases": [
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "71b1b7fe241ce7bcddd7ffaa99f9b0495773950891ff3910d3573da59a6a7724",
+        "case": "float16-normal-0",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "56e95e55d3884c17c0df9bd4da72551f648e6e280cc8bad0712e0c85e585fc1c",
+        "case": "float16-normal-1",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "69935b60f569485bbb3675964025c9bdf6303720be4da26ec295ec0745609374",
+        "case": "float16-normal-2",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "a98208daa3502b1992bfd8a34047e988126259c9529079ed7e9668d97303634c",
+        "case": "float16-normal-3",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "2656fe0d44e076f4a58395d46dd9f760eaf044c620eee36385d49140b70c715c",
+        "case": "float16-normal-4",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "db3b6b36e8e714807bb32e1f4df7ae06e60264330d2bdacb00e721d1baf79bbb",
+        "case": "float16-normal-5",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "1ba8b0d455b305a3994ab1389d94de5965dfbeaff2a5c8fc0f32526d9077cec8",
+        "case": "float16-normal-6",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "b2a2c57eebea6758aed044e16fb736ded4891dc822034846b13522b1a2c898e1",
+        "case": "float16-normal-7",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "766451bd883c7fffb485178721d311941094f0610754a0c57bbb3e67a8dbe661",
+        "case": "float16-sequence-product",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "e2989368d1a9580c65164dd923d80b3adf855a204f55adbc04cb18321ef86c7f",
+        "case": "float16-all-masked-sum",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "5b62af3e260683b327441f235e398c2406a20a524e875bacc95aed4ab1d8fbff",
+        "case": "float16-masked-exp-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "52e1256f1e63f7972545cdd592cffac15f7b10889ce14eaa9a1e5d3bfc93f7eb",
+        "case": "float16-padding-inf-subtract",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "4a772fb9605d10c15000b9c37ea32872eb150059ac19356597f3939af0873aa5",
+        "case": "float16-finite-product-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "7ed683e414a8b97e9733057218563e2ea6c9c2a438b187140af2708b68a9dd38",
+        "case": "float16-exp-underflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "d25ae35b6f466b4f4c7f72c7863a10464685d5cc50044111404c0a25836664c4",
+        "case": "float16-empty-mean",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "0ff0219afa1f98193d1d45a999a5a488a60c0ab258380a2d730ad779ee6634a1",
+        "case": "float16-unverified-manual-difference",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "cbed632e52536a41d7115f798cc332cd9e47ea83d62b2a5b36c40110d624568c",
+        "case": "float16-unsupported-grpo",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "600ed6ec880f5e9d783fee3cdfe2c87b8f1f169070d427731a270c4e77d69d96",
+        "case": "bfloat16-normal-0",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "cb0ed0f38a2ec605a0e80c33888a91d08f3bceee8d4ebed4468deb08af392b40",
+        "case": "bfloat16-normal-1",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "5c221406ce8f01bddfee2ad88fc878c83b0e25cfab9c1c3753ea623c845227b5",
+        "case": "bfloat16-normal-2",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "5cc1d370a961521bedb5235856ae15b3a8db6aabd5dd9edb8bb804be092262a5",
+        "case": "bfloat16-normal-3",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "21c80d41b3f06179bc5b25da0e3a4100ab4f564688a6a10f634b5e336be9612b",
+        "case": "bfloat16-normal-4",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "b8acc93bb6873c6d8bc4df3fee4d0738959709ddd0680ab9eedc2f08bf0c419e",
+        "case": "bfloat16-normal-5",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "286b0b7029f7a3f0babf8ab629bd868c8b240223ad2ae4b6aa78e6617ac1ac9f",
+        "case": "bfloat16-normal-6",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "ffed6b7d2b5da54eec43c96782969bd4747033a0d720ebac0808c8d859fda890",
+        "case": "bfloat16-normal-7",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "06d96c8afaa18b7a74179e48a9691eb7fb8a113de5fafaf63762bd7c52ec3064",
+        "case": "bfloat16-sequence-product",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "3159ac09226eac44b85db5c6a38811ac9e8a5405cb9816064b012b7e3566d7e8",
+        "case": "bfloat16-all-masked-sum",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "f3fec91ef53aadf6581024e59f6655b8d79618fb711bcee923cef264d788b7a5",
+        "case": "bfloat16-masked-exp-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "d3d0ef17c8451ab10b09349d3018078834b0162fc5eb7750766ce9cbc1f8d660",
+        "case": "bfloat16-padding-inf-subtract",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "fb1f5ca016740d1666436a262de98f081ed10d6c3ee81c184c466554a075e8da",
+        "case": "bfloat16-finite-product-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "042e1f061f11a46b4abc8899243bf1fe8caa255250b659f4eb5c383663b6e7ef",
+        "case": "bfloat16-exp-underflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "8f0fd5ca3dd848edeee653758345563321f19c1825d9763922fdc5ba9248171a",
+        "case": "bfloat16-empty-mean",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "0e0bca86b21a69af5e7b943da7afc1f3a9b71a556c1e588aa2225a940bdfaac9",
+        "case": "bfloat16-unverified-manual-difference",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "9e955644cff2dbebe54c32f04f55bc42d603d9ed6694885058f4f0b5bbe5ba8a",
+        "case": "bfloat16-unsupported-grpo",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "4be71bc0d6d790374db5eda00bfe2b5e7c86c1f5b8fff7b58fe10e04c5102194",
+        "case": "float32-normal-0",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "9c313b33724f5272c1d1375c06bc65c683c694d1de55b858cfbdf9089a697aa5",
+        "case": "float32-normal-1",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "a47f73e2497e7e42fbf2a94c34cc6dceecd90c1ad57eced31481886888fb6f41",
+        "case": "float32-normal-2",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "8c4ccdeb5ba1b073fa0941f79626f74ad9fccc19b4bd4158e161c45db7b69813",
+        "case": "float32-normal-3",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "c79e4bdc5fbf17b0d13d32214107c730f4d37f810ebe9099ad3b7379dd976fcb",
+        "case": "float32-normal-4",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "aaa994fb48e805931da4be9d70ab32bd7aa37e28583b709c7ad29fbb0090d33b",
+        "case": "float32-normal-5",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "1bb9d23a8f1caaf5fe48e8d44aaff797874945f4b6b21fe41cc39ceda5e1dc28",
+        "case": "float32-normal-6",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "3713ae0aa6914d6c978a04a88e691148ef00fb018268eddbd04435383c869b16",
+        "case": "float32-normal-7",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "03c91bcdc33fcf2650c7ba038c6db11fb9438e6271210c8a8b36eddf59889ca9",
+        "case": "float32-sequence-product",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "2c08cfbf7879ee4e423f85bee7df4cad08c8432da2d906bf4293a11b36e954d2",
+        "case": "float32-all-masked-sum",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "e4f722f6d8e67ab6ec17aa992b4861ca2c9d71078deac9c47d18530f2382f8c6",
+        "case": "float32-masked-exp-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "254470bee606a07435e40be0fb9210c6c148635c3bfb78f6519e68fb8aeecd07",
+        "case": "float32-padding-inf-subtract",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "2dcdeeaa99e7ce2514f468c43437c4e09ed273873103fd231faaab1d286411b1",
+        "case": "float32-finite-product-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "0adee2359f3020c9ca90ebc31b33f1f0f7b4792c3f2e204a0c280afd581bd042",
+        "case": "float32-exp-underflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "6f2524ab1c515d6cbf9638be1a9949da3f0ba5a091f7ec52a7dd48902952b93c",
+        "case": "float32-empty-mean",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "0d1f199d074873ff4cc0029508d8b77799fe367e252e0f83c4be06b979270574",
+        "case": "float32-unverified-manual-difference",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "f48e77b9aa582780aa43722eaa011d0b0ebd5ee2ecf212ce64f80d84bc9f1f61",
+        "case": "float32-unsupported-grpo",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "de1339d7aaa6d7cb08048036c2f4261def8ade1cb9fd19e5c3a387e837385bdb",
+        "case": "float64-normal-0",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "bc4aea0b6bd323e3c5f4e941bb0eb62755bb72931f9bb0642ac1a3ef20bf6a26",
+        "case": "float64-normal-1",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "a2e85f2a99c4a9cd8a8464306824682f69e1630398a81a88daa4d126e7867706",
+        "case": "float64-normal-2",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "0e4be6fa3bab88216e3d9669a5401cf3d6cf810a8d770b50d9411d545b619d1a",
+        "case": "float64-normal-3",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "d1c60aab4e075376e6801aa852d2c599851eaa622492ed6e298fe4133ce23806",
+        "case": "float64-normal-4",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "c256ff35782a9ce39326fe0989495697063dd1af40a35083a3d30c6c08d6c081",
+        "case": "float64-normal-5",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "7dce85a9473cf4fd2bc95e5313795fd26549f83a3dc9f9df52602556bcc4cb9d",
+        "case": "float64-normal-6",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "fac039bc95eb75f889ec4e6c4f74bbb2cbd7340a2733475186b74d97d88ac538",
+        "case": "float64-normal-7",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "bfb4c831206e9879615780e765ccbde944a2711ed3e1b9ae7a0fa28da24fa407",
+        "case": "float64-sequence-product",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "aa8b4c038b245e118472e713b97201be84f4348a5dfcc64d773b7e9a43f08495",
+        "case": "float64-all-masked-sum",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "0313c1d4e7b975d42db99539a92345685903abd38da941e87b912e26cff215ff",
+        "case": "float64-masked-exp-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "712bc0959a6cb4612f5b15cd17ae1491639442aea8643355491e3e0d2635417f",
+        "case": "float64-padding-inf-subtract",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "bd5706609d39c58525b6cfd6ae81cef4d398c63597b9d5e3149382042cb69f27",
+        "case": "float64-finite-product-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "c04dfab52699ade452f2493a13332d372d14e3b630a7a18b13d6ac724ed41f5c",
+        "case": "float64-exp-underflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "cc758d2dd16915c1e212341cb8711c3fbac4f28b95125207dc910472da87eb24",
+        "case": "float64-empty-mean",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "f15df8fcf6833eebf750fa9d6530cfd3e6b99a10e07cd83f68065e25bfc9baa3",
+        "case": "float64-unverified-manual-difference",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "ca1e18ee39a3c851b357b2e3c989d71ae41c6735209aafc52491fddfd3ef4936",
+        "case": "float64-unsupported-grpo",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      }
+    ],
+    "metrics": {
+      "case_count": 68,
+      "false_negative_rate": 0.0,
+      "false_negatives": 0,
+      "false_positive_rate": 0.0,
+      "false_positives": 0,
+      "insufficient_cases": 8,
+      "normal_cases": 40,
+      "normal_coefficient_spread_cases_explained": 26,
+      "numerical_cases": 20,
+      "passed": 68
+    },
+    "seed": 104729
+  },
+  "environment": {
+    "device": "cpu",
+    "dtypes": [
+      "float16",
+      "bfloat16",
+      "float32",
+      "float64"
+    ],
+    "torch": "2.14.1+cpu"
+  },
+  "historical_review": {
+    "historical_integrated_confirmed_defects": 0,
+    "historical_numerical_candidates": 7,
+    "repositories": [
+      {
+        "execution": "NOT_EXECUTED",
+        "repository": "Open-Instruct",
+        "verdict": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "execution": "NOT_EXECUTED",
+        "repository": "Prime RL",
+        "verdict": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "execution": "NOT_EXECUTED",
+        "repository": "Verifiers",
+        "verdict": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "execution": "NOT_EXECUTED",
+        "repository": "Axolotl",
+        "verdict": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "execution": "NOT_EXECUTED",
+        "repository": "ms-swift",
+        "verdict": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "execution": "NOT_EXECUTED",
+        "repository": "trlx",
+        "verdict": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "execution": "NOT_EXECUTED",
+        "repository": "DeepSpeedExamples",
+        "verdict": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "execution": "NOT_EXECUTED",
+        "repository": "Open-Reasoner-Zero",
+        "verdict": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "execution": "NOT_EXECUTED",
+        "repository": "torchtune",
+        "verdict": "INSUFFICIENT_EVIDENCE"
+      },
+      {
+        "execution": "NOT_EXECUTED",
+        "repository": "CleanRL",
+        "verdict": "INSUFFICIENT_EVIDENCE"
+      }
+    ],
+    "source": "owner-supplied historical summary; artifacts unavailable in public checkout",
+    "used_as_ground_truth": false
+  },
+  "holdout": {
+    "cases": [
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "2e6b430d4f005f180e36058cc2b86ae4f03f1a3a3a7e4855ad0569720900cd15",
+        "case": "float16-normal-0",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "bd0c07e2af10f3de184318c9a98208470cd3adfd046071deced8dc159ac3ea2e",
+        "case": "float16-normal-1",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "082e80757f47d08adad7d57826a70dea66274c5bea5425638fd782e16407569c",
+        "case": "float16-normal-2",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "75278bcdcceac39fd0de6d2d0229da207bbc92692990e04438b5fa3d3e357222",
+        "case": "float16-normal-3",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "0dc9eebc2b487bd636072c5a3c3692e468cbaaefa5527d7510814bd8923ff16d",
+        "case": "float16-normal-4",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "59e41b3043aa4237b172d43408dca5ce0d6cbc7dc0bf6f9f2798f125fa25e9da",
+        "case": "float16-normal-5",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "1da1c81ce32478ca5c0fdf640581c80b1784f8c9808d6babde139e81f695384f",
+        "case": "float16-normal-6",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "207bc6f024b737d9ef054dda17c325f86106c4ee37daeb9f84c18606c36405fe",
+        "case": "float16-normal-7",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "7ccc2d47a774623851b1a40431846a121f169d6a8de6e3c69ea0ea51552333d8",
+        "case": "float16-normal-8",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "9a55a61c50083a828b9b5490bdcc2a9dac8fdc0cc5cd4f52745519bf920f8398",
+        "case": "float16-normal-9",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "13413d9c9e7e0b675cdf8a6aef6905a9de7d357e606303ac5b03a413eb9c9231",
+        "case": "float16-normal-10",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "17130ca80d9fc1b30cd74eadfa757457130e8eb7e9062c719c8d65a045287076",
+        "case": "float16-normal-11",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "a7a3d54c5b9b6668d0e39a1674f7b25dfd54a9f914a3026c704a5f2ac7fbedea",
+        "case": "float16-normal-12",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "d9bee93d2bf510df1958f74061c4a0b18747bae3d79848e6bf643a22c97d4018",
+        "case": "float16-normal-13",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "1512a3cbd13f9ddead414b463b1b85037926411e087cbc0576085c0c71b1c5f0",
+        "case": "float16-normal-14",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "aecf4be7d819ace51d8c6493acea062d4a9f10f736a48210996b667be3fcaecd",
+        "case": "float16-normal-15",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "d3bf962c2077a8ff6db981b4cb6f86fe792599176ce195d7970426155850d293",
+        "case": "float16-normal-16",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "a5d2222537ebacf1c4e5dcd0dbc1ee6e478ceb8c6498ae92719fbdf3abab6954",
+        "case": "float16-normal-17",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "30e5d7d13ea06dbef55e6bd86991fc99763d26419645514c3f8c57e87d9310a5",
+        "case": "float16-normal-18",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "49699baf20f2ef9a45f41d628736b99ca19a1430e52a1a28bf62be4971bc8d33",
+        "case": "float16-normal-19",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "180d8889870d360ad9e02edbced6944e6e1b6b3a2849153f6183f2cacc4ec33f",
+        "case": "float16-normal-20",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "e5172368cd8e885e50181d929f5861d448fca23eadf36639c2a4397a2a4a25c1",
+        "case": "float16-normal-21",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "dd53636254773a15b7ad8616fdc4f02adb0cf7f146823815eef658d03e8cc989",
+        "case": "float16-normal-22",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "c29bf469d67dedd6d9bfc188563007235235613d789720b59ae61a95fe015537",
+        "case": "float16-normal-23",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "d78ff08a9b7c42694ba400d768e8bb35deee93482ebc8b7ae0cf4c985becb0ef",
+        "case": "float16-normal-24",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "ed3d78883df87563104c214cee63ffabb68bd83c9f00b5197cae0d1e5196c01e",
+        "case": "float16-normal-25",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "937872dd83dc73d7ce7f66835b4f3146800ff707c6cd9885d037ca0d3d7c1031",
+        "case": "float16-normal-26",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "c830846b261ad0d5a2012212ef18f85379295b008a287a10f3ec90c4b6d8b74a",
+        "case": "float16-normal-27",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "20623c257356e4ea56b421a157efbc7da4f521bc36d914fbf1f644affc34cf32",
+        "case": "float16-normal-28",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "c18a56e3df6cfba90d1dde79d14adf7b1e5059a20506811f09488440b0a85924",
+        "case": "float16-normal-29",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "cfa7bfbf675b9613745fa07cefcd886584a127f91f3af177bc906f6b30d110ee",
+        "case": "float16-normal-30",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "b7a289a9c6e06d2620d86795891234bccdbb845a8d5e87d08be67580ab13579e",
+        "case": "float16-normal-31",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "766451bd883c7fffb485178721d311941094f0610754a0c57bbb3e67a8dbe661",
+        "case": "float16-sequence-product",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "e2989368d1a9580c65164dd923d80b3adf855a204f55adbc04cb18321ef86c7f",
+        "case": "float16-all-masked-sum",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "5b62af3e260683b327441f235e398c2406a20a524e875bacc95aed4ab1d8fbff",
+        "case": "float16-masked-exp-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "52e1256f1e63f7972545cdd592cffac15f7b10889ce14eaa9a1e5d3bfc93f7eb",
+        "case": "float16-padding-inf-subtract",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "4a772fb9605d10c15000b9c37ea32872eb150059ac19356597f3939af0873aa5",
+        "case": "float16-finite-product-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "7ed683e414a8b97e9733057218563e2ea6c9c2a438b187140af2708b68a9dd38",
+        "case": "float16-exp-underflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "d25ae35b6f466b4f4c7f72c7863a10464685d5cc50044111404c0a25836664c4",
+        "case": "float16-empty-mean",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "0ff0219afa1f98193d1d45a999a5a488a60c0ab258380a2d730ad779ee6634a1",
+        "case": "float16-unverified-manual-difference",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "cbed632e52536a41d7115f798cc332cd9e47ea83d62b2a5b36c40110d624568c",
+        "case": "float16-unsupported-grpo",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "97f21be15b09a88636984fb2e17f05693eaa54b9cca6447058b08938ac554276",
+        "case": "bfloat16-normal-0",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "ab9aa8f2de6c65f7ea7993d7b8aad18683cb4b22fa46ca6a62f042adcfd0d129",
+        "case": "bfloat16-normal-1",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "61cb38286d8fa1298bc54e64ce23aa9a30d3dc3bdf88174bd7c6a7fd2bfb8709",
+        "case": "bfloat16-normal-2",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "a85854768c0a017b78cc0b2ed69ebebe10b2a9bf3d91e8708d8004d4e6062bd5",
+        "case": "bfloat16-normal-3",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "f38f72d248e1ce700794a1f4c1c8cba2d6582af010532e63c60b96fcf0e2335a",
+        "case": "bfloat16-normal-4",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "dc69e8892bb569d94bc28a1704d1b013b0ffc62c25faae20e68c752207a73628",
+        "case": "bfloat16-normal-5",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "7cb0ed59f8d3801a8e4a8954696f1f2bdb2be400c54436be14de4ae78e3ce056",
+        "case": "bfloat16-normal-6",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "31e56a4f9bf6caa60129bd216e1048145b01cc96e1eaf1df51f9a21b0af53ac0",
+        "case": "bfloat16-normal-7",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "2b8c26d783560cc73e6c2be864af1844a818c1076d0fd3fc90ce2714e9ce7f76",
+        "case": "bfloat16-normal-8",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "27822059701b9e3bad20fc6f83b6236ae48d70640ccf990d8b5aaf991ff7381c",
+        "case": "bfloat16-normal-9",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "9ad03080d8df019426e7da5e2f3f618ee6fdbff97a40597f53128fa0bd44702c",
+        "case": "bfloat16-normal-10",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "2ce3a49521bdfcf0dffa36aa12f6fa46a356e019763abcc4e1d0d5a227255e4d",
+        "case": "bfloat16-normal-11",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "00c48bb1147ad26b5614f1cd48d9a7405bc525efbe9071a212d5fef8068a5e25",
+        "case": "bfloat16-normal-12",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "a7ba94140236d8552942d2cf2e952367d1ebfde78eef3a2e934c643f72f52dfb",
+        "case": "bfloat16-normal-13",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "8178c71f8fe888190aaf70aaec57c5e35b92acf1ee12506a11ee8b3aa16fb930",
+        "case": "bfloat16-normal-14",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "76740a06a4deb2a65075b69843720050af333ff7fb1b1aeb99b55eb628e5a536",
+        "case": "bfloat16-normal-15",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "76472c669545689d5b4f1e72252373941665bf6a4118712378e30bdce984eb2b",
+        "case": "bfloat16-normal-16",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "5dc1ea382e8eb302b0e1426c7209ce599883dd30007f8eaba6a6c8984c2368e3",
+        "case": "bfloat16-normal-17",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "30db3f0e84232e208c4a033d6a81535551e0a44179c06691a4de8ed947dc6c4a",
+        "case": "bfloat16-normal-18",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "bb0f4e96634d99745c5ec5686a94a1127fdfc93d0e19949b8543bbcb67d7d429",
+        "case": "bfloat16-normal-19",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "11ec8d55f9302ad7ee59f5378ecbc420117b2e9cf1cff818b48b0594fa7116e0",
+        "case": "bfloat16-normal-20",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "51c9a1dced6fd38abce4553abbf547f69ab0a3832f397a0b3d429ac7c4803a65",
+        "case": "bfloat16-normal-21",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "f4b94a9204fb7241142849aea8e23eb3a3129ac4e6bf09a4397e64856719fd5c",
+        "case": "bfloat16-normal-22",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "5805065cdd658ca2b082f6ed5f844bf8a86ddb41366b966d147b4174b262534b",
+        "case": "bfloat16-normal-23",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "752018efc968e5ad4e12fce90c3a45a3c21d12eeb57c0ec921de3dd212305045",
+        "case": "bfloat16-normal-24",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "d85ef809febce346e6748eecf04321ef76e8fc96c7c01e9ff28d723861e5a66e",
+        "case": "bfloat16-normal-25",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "e2b9ea05f889a9e9b10f14ac26350b227e81942e2a9c173eb94cfc3892885a55",
+        "case": "bfloat16-normal-26",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "57c12b3340612dbc5a1c28fec6773b0146d01ada3e7c4b8c5e2a47206c26a427",
+        "case": "bfloat16-normal-27",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "b404ed0ea85858d575e6a259ee8d89d869737ea44175641dcef3337237c28fc2",
+        "case": "bfloat16-normal-28",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "56353d11e5aebfc4abde8e6932df6deee1dc6823c61819d76a8a24b690914d8b",
+        "case": "bfloat16-normal-29",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "547637cd30e2baa622656260642128e5fd04c4288f2d39e0ee9f2655cf307d67",
+        "case": "bfloat16-normal-30",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "2a08530960680bc842f0445d368f815a2e07232c30cbe4e7ba97562580e1f625",
+        "case": "bfloat16-normal-31",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "06d96c8afaa18b7a74179e48a9691eb7fb8a113de5fafaf63762bd7c52ec3064",
+        "case": "bfloat16-sequence-product",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "3159ac09226eac44b85db5c6a38811ac9e8a5405cb9816064b012b7e3566d7e8",
+        "case": "bfloat16-all-masked-sum",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "f3fec91ef53aadf6581024e59f6655b8d79618fb711bcee923cef264d788b7a5",
+        "case": "bfloat16-masked-exp-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "d3d0ef17c8451ab10b09349d3018078834b0162fc5eb7750766ce9cbc1f8d660",
+        "case": "bfloat16-padding-inf-subtract",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "fb1f5ca016740d1666436a262de98f081ed10d6c3ee81c184c466554a075e8da",
+        "case": "bfloat16-finite-product-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "042e1f061f11a46b4abc8899243bf1fe8caa255250b659f4eb5c383663b6e7ef",
+        "case": "bfloat16-exp-underflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "8f0fd5ca3dd848edeee653758345563321f19c1825d9763922fdc5ba9248171a",
+        "case": "bfloat16-empty-mean",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "0e0bca86b21a69af5e7b943da7afc1f3a9b71a556c1e588aa2225a940bdfaac9",
+        "case": "bfloat16-unverified-manual-difference",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "9e955644cff2dbebe54c32f04f55bc42d603d9ed6694885058f4f0b5bbe5ba8a",
+        "case": "bfloat16-unsupported-grpo",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "43baa469bb5fd2bdffc24de2d65bcef2cb272e2878e1b461c0d466cfc74e5e56",
+        "case": "float32-normal-0",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "850a1c61a409cd686e339ae565a0f40a63b8eb87b96121cc0c3817edb436e923",
+        "case": "float32-normal-1",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "012e682bb4e6b33748c3053925e6a715e242e248648b6cd282eaf1bb33fc1a1b",
+        "case": "float32-normal-2",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "ebca9135b85a06a931b46e968a0bdcaf278c424f4b8063e7cf3081722cbb7cf2",
+        "case": "float32-normal-3",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "141c56294fa1b458127864d61020b21f8496f9d3006d5bdf4e045d9204fd6bfc",
+        "case": "float32-normal-4",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "4aa4452669836c5f86841be7632d59dd0c55e422666523606e0bcffaa615d91f",
+        "case": "float32-normal-5",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "fc8920e3635acf0da6e3afe9c958558202f9cd01045c0f76c984dbfb56b0771d",
+        "case": "float32-normal-6",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "0e002f3793d2faea58bfb5a396568ca39b0cb6c4e2d9229fcde483590f54f458",
+        "case": "float32-normal-7",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "208854f4809eeb0d9dfe2126d4135ee88511ba99f34ec00bf3550b2e197828c4",
+        "case": "float32-normal-8",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "157d9e9c7da344e90d6ec2887b5818a5b4f55a9407ff91fad0b7a380976ff2f2",
+        "case": "float32-normal-9",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "4854ce347cb3cfd85b22dcfe0ada7b863d3ef798b0bc90aa035aaf6ee7fbb23f",
+        "case": "float32-normal-10",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "f4cdcb25038d381baf3bcea21675779c8977668bacf3833610221c150476b9b3",
+        "case": "float32-normal-11",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "bc230122340e7fcaa20f46a9036399b4900597a3d11b0099c2b4443ceed715fc",
+        "case": "float32-normal-12",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "2b2bc76d7eba9c9f90e94052b6c9aaffc9541ef232e5fba0a5f511471bbf4616",
+        "case": "float32-normal-13",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "9efb15f4fc78c85ce690d93a800d4672a77552d044371c1bbf725a0eab46c1fd",
+        "case": "float32-normal-14",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "8f5c02c8e142bc5479ed4e4c83930693ccd0b00de44ce1b65475fe15e0b7fc85",
+        "case": "float32-normal-15",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "bfd2f44af0e071116eae93395e15b51679184454c0decc8d9db98a022bb51ba2",
+        "case": "float32-normal-16",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "19e3c318c71172d43f6055e384f661b6b56908ff8d670c3b356bce3e9ff1f228",
+        "case": "float32-normal-17",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "71ca8ef1bfb7a37c1288a0aaa13ffa246724b3b5d6a52a53b2767d0682e6e4ea",
+        "case": "float32-normal-18",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "598f365becad5b3083b5b5a8f7128f74b24708e563ccea4efe32ce9323d07a23",
+        "case": "float32-normal-19",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "b07bd7104d86305915eda91e012fef7025269e16222c6d3bc1f2effb7081626a",
+        "case": "float32-normal-20",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "4f69dfd51498a6af2d3dbbe8f8057fdee94cddaf60989ffad80bb60797b66df6",
+        "case": "float32-normal-21",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "c41648be0ecdce448d78dcca8048379e0741d03b03f2e14f2760c763619e437f",
+        "case": "float32-normal-22",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "72fd7f43c99535b1afc5b034018fabe630749128c2a1caff5150e64028221cf5",
+        "case": "float32-normal-23",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "9bdcb4c184cd1a47d642664da7efe7eb88f0f0de3150a3e34ca7526d424b5e8b",
+        "case": "float32-normal-24",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "26b6c46788958dc45a3d98d2446f65d3b5eb02247c39d2c3cd0009354ee7a42b",
+        "case": "float32-normal-25",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "a414a5b52111106014a6b31a850460e105c35260cee14328de0d34d3a1597c57",
+        "case": "float32-normal-26",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "3d4eaf822f5642c1a57d6087d985cf600af41c40a6675f629a727aab21ff5244",
+        "case": "float32-normal-27",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "c0cdb7b5f7b8117a93d9753680199c5f450a9518e58ae8fc126c59ecc318eff2",
+        "case": "float32-normal-28",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "fb425043eda19ecd5ad2ce061815453473f8c5d0f680251b7ad4078507838a76",
+        "case": "float32-normal-29",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "d3ee5ac997c6ae81f18b71c98635348e5b879819786e6768b63258ef0f444982",
+        "case": "float32-normal-30",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "7fbf9867d459d57c4f6e61dfd5b2492483f5207d6e59086b820dcfdcc5aa3e07",
+        "case": "float32-normal-31",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "03c91bcdc33fcf2650c7ba038c6db11fb9438e6271210c8a8b36eddf59889ca9",
+        "case": "float32-sequence-product",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "2c08cfbf7879ee4e423f85bee7df4cad08c8432da2d906bf4293a11b36e954d2",
+        "case": "float32-all-masked-sum",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "e4f722f6d8e67ab6ec17aa992b4861ca2c9d71078deac9c47d18530f2382f8c6",
+        "case": "float32-masked-exp-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "254470bee606a07435e40be0fb9210c6c148635c3bfb78f6519e68fb8aeecd07",
+        "case": "float32-padding-inf-subtract",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "2dcdeeaa99e7ce2514f468c43437c4e09ed273873103fd231faaab1d286411b1",
+        "case": "float32-finite-product-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "0adee2359f3020c9ca90ebc31b33f1f0f7b4792c3f2e204a0c280afd581bd042",
+        "case": "float32-exp-underflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "6f2524ab1c515d6cbf9638be1a9949da3f0ba5a091f7ec52a7dd48902952b93c",
+        "case": "float32-empty-mean",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "0d1f199d074873ff4cc0029508d8b77799fe367e252e0f83c4be06b979270574",
+        "case": "float32-unverified-manual-difference",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "f48e77b9aa582780aa43722eaa011d0b0ebd5ee2ecf212ce64f80d84bc9f1f61",
+        "case": "float32-unsupported-grpo",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "1e02239aa8899cb76ee3edab3b6d2287d4addeb42479cb32f036d79a8f549ab0",
+        "case": "float64-normal-0",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "9f0adfd5259c46527a5503c885c7af95ba23305204d8518b6f203a4fa2f01694",
+        "case": "float64-normal-1",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "e1484df80f08ac42056d1bc24398438e3a619cbabac7e7c371722598b1047a6b",
+        "case": "float64-normal-2",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "18d1eb4bf95b3c5017606f03f30f7113ff38c5eb6b501415a2277a635e34b45b",
+        "case": "float64-normal-3",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "2a5d165ee96c722f17ea78201d0defb0b5d9f59b612ec90b0005f9a76026f5cc",
+        "case": "float64-normal-4",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "02b522edeac9a7f56a4cffd32243b5947ff5f3a39234b572eb1243977caed61c",
+        "case": "float64-normal-5",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "27e99bec60b80109255ff0207b29abab18f44294ead611143f61d0f7337ac536",
+        "case": "float64-normal-6",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "55748fd058b75f0be89a3d9eb041f64e2a39ab99edf7f386c7d18ba49bfea3e9",
+        "case": "float64-normal-7",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "b6e4d6d02ef34578888a104e2f4e8933816814ce736ed79f61a6f2e60933f725",
+        "case": "float64-normal-8",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "e25ec5ed22a1156451a48d3a8e948cb603af61227ac213f7847dd1b62f79b58c",
+        "case": "float64-normal-9",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "e41e09496fcc681cbd6bf901dc8d21093fddf438bf67a7fd518f644507a37163",
+        "case": "float64-normal-10",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "1be7c882165f95fe57440522ace5bc34a02650d15145da5be8a23e95a44c24af",
+        "case": "float64-normal-11",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "96689dcb957a869b7853c8e75fa76c0922c2131e2c3721cbe118aa78bf56d632",
+        "case": "float64-normal-12",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "34a9314b9c3e072c7e9da50ffbf8c72c619ac0ea742f62d8bad1a5a591907dec",
+        "case": "float64-normal-13",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "86c480b744ab39e2cb74f05c576d82d671239807987af7bdb64257ffc25fb66f",
+        "case": "float64-normal-14",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "644eb45e105e9bc20660053db892afc4da22b3e3ffe31439d00d2752bfbee668",
+        "case": "float64-normal-15",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "849dbc4c7cdf3dcd2904136a671110eb581c0ec3575cbbc731d1faebce581fdb",
+        "case": "float64-normal-16",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "d5a9a5c4ec263cfed378d21bc4a178249619e3a90459ad2ba0285395058fd2e5",
+        "case": "float64-normal-17",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "24c976c3dccc67e3920f8caa13414a8b51eb4075d98c9bc14616a51352f52cbf",
+        "case": "float64-normal-18",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "67d64abf33e0dbf85ca5512288d21ecdda5ac3f5cd8199ee25ca42c8889c2011",
+        "case": "float64-normal-19",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "a39984891392b34bbfdf0eaead43e6280b47b281f7917618ca70cbc2aec71846",
+        "case": "float64-normal-20",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "1b3a0dca2947a7dbf5c6df380a5331b737d20770d2cf2a5c67c46601b5476f5e",
+        "case": "float64-normal-21",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "a98114854f59ec8652016e5208835f6391b8d9e84a6f5f254fd20ffbcedf794d",
+        "case": "float64-normal-22",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "024ecf8df918ee7b211181484c483c8d3f33430edaa34d301427b085faba58bb",
+        "case": "float64-normal-23",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "4ac438c21dddc29e1d301b41a6dc1d29d3f20f6a13081e26120f9c492236f92c",
+        "case": "float64-normal-24",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "8cf4b92337f8395708cb866599dc4b3723bf24fde53474f16706c5b432539845",
+        "case": "float64-normal-25",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "ed6c4553b0665367145b1a669a43f1437a8010f2c80c02c2e3854aed4ad6f441",
+        "case": "float64-normal-26",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "f7e4529024c729d0e2e305d670aa08ac83957b6578fc0cf28c35ead31ae730c8",
+        "case": "float64-normal-27",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "f1e4cad533c6c70e4cf6f2156829dda6a9bd2d866800f833d0f9cf5dd1bbb85e",
+        "case": "float64-normal-28",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "3f7212f740226efce817f585c4fea26fa0d2941498e06587bc1cad5666fa293f",
+        "case": "float64-normal-29",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "a0e8442fb9b6d7bc1dbc2a1750da483d32f62da0708d584ed2f2b20edca198b0",
+        "case": "float64-normal-30",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "ae698d81370ae2f2a694a7c00a713e1e694c2a25cec0b3b22051511486ca5684",
+        "case": "float64-normal-31",
+        "coefficient_spread": true,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "bfb4c831206e9879615780e765ccbde944a2711ed3e1b9ae7a0fa28da24fa407",
+        "case": "float64-sequence-product",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "EXPECTED_OBJECTIVE_EFFECT",
+        "audit_sha256": "aa8b4c038b245e118472e713b97201be84f4348a5dfcc64d773b7e9a43f08495",
+        "case": "float64-all-masked-sum",
+        "coefficient_spread": false,
+        "expected": "EXPECTED_OBJECTIVE_EFFECT",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "0313c1d4e7b975d42db99539a92345685903abd38da941e87b912e26cff215ff",
+        "case": "float64-masked-exp-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "712bc0959a6cb4612f5b15cd17ae1491639442aea8643355491e3e0d2635417f",
+        "case": "float64-padding-inf-subtract",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "bd5706609d39c58525b6cfd6ae81cef4d398c63597b9d5e3149382042cb69f27",
+        "case": "float64-finite-product-overflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "c04dfab52699ade452f2493a13332d372d14e3b630a7a18b13d6ac724ed41f5c",
+        "case": "float64-exp-underflow",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "NUMERICAL_ANOMALY_OBSERVED",
+        "audit_sha256": "cc758d2dd16915c1e212341cb8711c3fbac4f28b95125207dc910472da87eb24",
+        "case": "float64-empty-mean",
+        "coefficient_spread": false,
+        "expected": "NUMERICAL_ANOMALY_OBSERVED",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "f15df8fcf6833eebf750fa9d6530cfd3e6b99a10e07cd83f68065e25bfc9baa3",
+        "case": "float64-unverified-manual-difference",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      },
+      {
+        "actual": "INSUFFICIENT_EVIDENCE",
+        "audit_sha256": "ca1e18ee39a3c851b357b2e3c989d71ae41c6735209aafc52491fddfd3ef4936",
+        "case": "float64-unsupported-grpo",
+        "coefficient_spread": false,
+        "expected": "INSUFFICIENT_EVIDENCE",
+        "pass": true
+      }
+    ],
+    "metrics": {
+      "case_count": 164,
+      "false_negative_rate": 0.0,
+      "false_negatives": 0,
+      "false_positive_rate": 0.0,
+      "false_positives": 0,
+      "insufficient_cases": 8,
+      "normal_cases": 136,
+      "normal_coefficient_spread_cases_explained": 116,
+      "numerical_cases": 20,
+      "passed": 164
+    },
+    "seed": 130363
+  },
+  "limitations": [
+    "Seeded local controls are not a prospective external framework benchmark.",
+    "Holdout uses separate seeds and more draws from the same specified generator, not an independent distribution.",
+    "Historical candidates were not relabeled, reconstructed, or executed.",
+    "Zero observed error rates do not establish zero population error."
+  ],
+  "outcome": "PASS",
+  "schema_version": "quotientguard-objective-benchmark-v1"
+}

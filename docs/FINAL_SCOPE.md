@@ -1,5 +1,9 @@
 # QuotientGuard v1.0 Product Freeze
 
+Historical v1.0 scope. The owner's 2026-10-26 v1.1 authorization adds the optional
+[objective interpretation layer](OBJECTIVE_AUDIT.md); the v1 research contract
+below remains intact. This freeze does not prohibit the authorized v1.1 release.
+
 Date: 2026-09-21
 Status: FINAL PUBLIC SCOPE / NO FEATURE ROADMAP
 
