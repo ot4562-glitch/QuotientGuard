@@ -2,10 +2,25 @@
 
 > **Find gradient updates your reward did not ask for.**
 
-Current stable release: **v1.1.0** ·
-[GitHub Release](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v1.1.0) ·
+Current stable release: **v1.2.0** ·
+[GitHub Release](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v1.2.0) ·
 [Changelog](CHANGELOG.md) ·
 [Paper](https://doi.org/10.5281/zenodo.22859044)
+
+**v1.2.0** adds explicit full-objective, input/parameter-gradient,
+controlled training-step and accumulation-window audits, plus resumable source-only
+repository inspection. See [Objective audit](docs/OBJECTIVE_AUDIT.md),
+[Integrations](docs/INTEGRATIONS.md) and [v1.2 scope and validation](docs/VALIDATION_V1_2.md).
+
+The v1.2 API provides explicit composite policy/KL/entropy loss
+and input-gradient contracts (`FullObjectiveSpec`, `audit_full_objective`),
+source-bound callable comparisons, and controlled AMP/accumulation/plain-SGD
+step validation. Run `quotientguard full-objective-audit examples/full-objective.json`
+with the `objective` extra installed. Framework modes and unsupported paths
+remain explicit; a local contract match does not certify an entire Trainer.
+`quotientguard objective-window-audit examples/objective-window.json` additionally
+checks explicit denominator counts and weighted microbatch/full-batch loss and
+gradient equivalence from supplied masks and process snapshots.
 
 QuotientGuard is a deterministic, offline **estimator-compatibility and
 objective-aware numerical audit** tool for RL/RLVR. It checks whether
@@ -103,9 +118,25 @@ full vs projected score spaces are **never silently conflated**.
 | CLI, comparisons and Sentinel | `cli.py`, `compare.py`, `sentinel.py` |
 | Tests and release gates | `tests/`, `tools/validate_release.py`, `tools/check_release_docs.py` |
 
+### Source-only inspection evidence (2026-10-29)
+
+A pinned, immutable-commit cohort of **952 repositories** was inspected with the
+v1.2 source-only survey. All **92,418 known Python paths** were accounted for;
+**92,232** parsed successfully with Python AST. The remaining **186** paths had
+explicit syntax, decoding, link or unsafe-path statuses. Repository coverage was
+**914 complete / 38 partial** under the declared source-inspection policy.
+
+The survey produced **8,881 static risk candidates** (6,186
+source/pattern/line groups), but **zero independently confirmed software
+defects**. These observations are not demonstrated training failures or
+ready-to-submit upstream fixes. The third-party sources were neither installed,
+imported nor executed. Aggregate coverage and evidence limitations are in
+[v1.2 validation](docs/VALIDATION_V1_2.md); detailed candidate triage and raw
+inspection evidence remain outside the public distribution.
+
 ## Verified upstream fixes
 
-**No merged upstream fixes are eligible for this table as of 2026-10-27.**
+**No merged upstream fixes are eligible for this table as of 2026-10-29.**
 
 A submitted PR is not a merged fix, and a QuotientGuard-assisted
 source-level audit is not autonomous discovery. This section exists
@@ -118,17 +149,18 @@ to record **verified, upstream-merged** fixes as they arrive.
 To add an entry, first verify the upstream merge commit/date, the
 reproduction and relevant test evidence, then label its provenance
 accurately as **QG-assisted triage**, **native QG runtime audit**, or
-**autonomous discovery** only when independently demonstrated. Record
-open, withdrawn and unverified work in the
-[upstream evidence ledger](docs/FEEDBACK.md#upstream-contribution-tracker)
-rather than inflating product specifications. A merged external code
-fix is evidence of accepted contribution, **not** proof that the
+**autonomous discovery** only when independently demonstrated. Record open,
+withdrawn and unverified work in an **internal, local-only** engineering ledger
+outside this public repository. Such work is not a shipped feature, upstream
+adoption or confirmed autonomous QuotientGuard discovery. A merged external
+code fix is evidence of accepted contribution, **not** proof that the
 QuotientGuard tool autonomously found or certified the bug.
 
 ## Versions and release discipline
 
 | Version | Released capabilities | Evidence |
 | --- | --- | --- |
+| [v1.2.0](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v1.2.0) | Explicit PPO/GSPO/CISPO/SAPO + KL/entropy contracts, controlled native/parameter/AMP/SGD/window checks and source-only repository inspection | [v1.2 validation scope](docs/VALIDATION_V1_2.md) |
 | [v1.1.0](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v1.1.0) | Optional PPO objective-aware interpretation, backward replay, numerical diagnostics; original compatibility semantics retained | [v1.1 validation](docs/VALIDATION_V1_1.md) |
 | [v1.0.0](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v1.0.0) | Exact/sampled compatibility, source-bound TRL adapter, regression/CI, Sentinel | [frozen benchmark](benchmarks/README.md) |
 
@@ -147,10 +179,10 @@ are not claims of shipped functionality.
   oracle, runtime capture and diagnostic limitations
 - [Integrations & CI](docs/INTEGRATIONS.md): framework adapters,
   frozen TRL identity and verifiable test hooks
+- [v1.2 validation](docs/VALIDATION_V1_2.md): accepted scope, local
+  reproducibility gates and limits of the 952-repository source-only survey
 - [v1.1 validation](docs/VALIDATION_V1_1.md): historical release gate
   results; not a live third-party bug benchmark
-- [Engineering feedback & upstream ledger](docs/FEEDBACK.md): reviewer
-  feedback, future improvements and PR status snapshot
 
 Source of record for released functionality: [CHANGELOG.md](CHANGELOG.md).
 Research: **Minseong Sim (2026)**, *Diagnosing Estimator Homomorphism

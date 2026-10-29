@@ -39,6 +39,10 @@ jobs:
           python -m unittest discover -s tests -v
           python -m quotientguard certify --out certification-result.json
           python -m quotientguard objective-benchmark --out objective-benchmark.json
+          python -m quotientguard full-objective-audit examples/full-objective.json --json
+          python -m quotientguard full-objective-audit examples/ppo-rollout-correction.json --json
+          python -m quotientguard full-objective-audit examples/gspo-rollout-correction.json --json
+          python -m quotientguard objective-window-audit examples/objective-window.json --json
 
       - name: Build wheel and source distribution
         run: python -m build
@@ -52,6 +56,8 @@ jobs:
           /tmp/qg-release-smoke/bin/quotientguard --version
           /tmp/qg-release-smoke/bin/quotientguard demo
           /tmp/qg-release-smoke/bin/quotientguard certify
+          python -m pip install "$GITHUB_WORKSPACE"/dist/*.whl --force-reinstall --no-deps
+          python "$GITHUB_WORKSPACE/tools/check_installed_v12.py" "$GITHUB_WORKSPACE"
 
       - name: Package optional agent-neutral workflow wrapper
         shell: bash

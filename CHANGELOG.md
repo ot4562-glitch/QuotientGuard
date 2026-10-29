@@ -1,11 +1,61 @@
 # Changelog
 
-## Unreleased (documentation and release maintenance)
+## 1.2.0 - 2026-10-29
 
-- Consolidated overlapping guides into five canonical `docs/` files.
-- Added reviewer feedback, scoped next-version ideas and an evidence-labeled upstream PR ledger.
+Public v1.2.0 release. Acceptance evidence covers the explicitly supported
+contracts and source-only inspection, not certification of third-party bugs.
+
+### Added
+
+- Explicit composite PPO/GSPO/CISPO/SAPO policy, k1/k2/k3 KL and supplied-entropy
+  contracts with independent scalar derivatives and PyTorch replay of every
+  declared input coordinate. Masking order, detach boundaries, component reductions,
+  clipping, score weights and separate KL-current/rollout coordinates stay explicit.
+- Detached gated old/rollout correction and inside-clipping GSPO rollout-reference
+  replacement, with distinct source-derived semantics and producer diagnostics.
+- Source-bound native callable comparisons, measured parameter-graph validation,
+  controlled autocast/GradScaler/accumulation/clipping/plain-SGD checks, and
+  supplied-mask/process-count-bound microbatch/full-batch objective-window audits.
+- Full-objective and objective-window CLI commands and executable examples.
+
+### Source inspection and compatibility
+
+- Added explicit masked sequence geometric-mean and stop-gradient sequence-token
+  ratio contracts, per-sequence and fixed-length reductions, selectable input
+  masking, and explicit empty-mask behavior, with independent CPU autograd controls.
+- Development package metadata is separate from the published stable version;
+  development versions cannot pass the stable tag-release gate.
+- Added bounded source-only repository discovery, immutable commit inventory,
+  Python AST triage, SQLite checkpoints, explicit transient retries, evidence
+  export and run comparison. Static candidates never become objective verdicts.
+- Added a controlled callable-validation API with source/code checks, excluded-token
+  mutations and raw/sanitized observations. A callable execution is separate from
+  running a full Trainer or observing a naturally occurring training failure.
+- Added opt-in file-level incremental inspection, verified prior-source import,
+  immutable continuation snapshots and cumulative evidence-store quotas. Enlarged
+  acquisition budgets reuse source bytes and policy-bound file analyses.
+- Expanded static candidates with bounded local assignment/alias provenance,
+  mask/exp ordering, unsafe post-operation selection and normalization/detach
+  observations; clipping and rejection are not automatically defects.
+- Added source-bound component classification with explicit unknown repository
+  roles, implementation independence and unsupported objective semantics.
+- Reserved transient SQLite journal and terminal snapshot capacity before source
+  publication, including legacy cache copies; added result/inventory/report/import
+  admission budgets and resumable source reuse after result-buffer exhaustion.
+
+- Consolidated overlapping guides into four publicly tracked `docs/` files.
+- Added a public upstream-merged-fixes section to README without claiming unmerged contributions.
 - Added per-version README/CHANGELOG/package synchronization checks and a version-agnostic tag-release workflow.
-- No change to the already-published v1.1.0 tag, certificate semantics or detector functionality.
+- No change to the already-published v1.1.0 tag or certificate semantics.
+
+### Support boundaries
+
+- Static candidates, controlled native observations and natural training failures
+  remain separate. No autonomous repository-wide correctness or defect certification.
+- Arbitrary optimizers/distributed collectives, arbitrary mixed-precision graphs,
+  entropy/advantage/sampling producer inference and undeclared framework paths
+  remain unsupported. Plain-SGD component checks do not certify a full Trainer.
+- Local package validation does not publish a release or establish upstream fixes.
 
 ## 1.1.0 - 2026-10-26
 

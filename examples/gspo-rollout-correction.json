@@ -1,0 +1,19 @@
+{
+  "spec": {
+    "policy": {"dtype": "float64", "ratio_level": "sequence_masked_geometric_mean"},
+    "correction": "rollout_ratio",
+    "correction_placement": "inside_clip",
+    "detach_rollout_policy": true,
+    "ratio_output_masking": "multiply",
+    "policy_reduction": {"reduction": "nonempty_sequence_mean", "denominator_epsilon": 1e-8}
+  },
+  "trace": {
+    "policy": {
+      "current_log_probs": [[-1, -1.1, 0], [-1.2, -1.1, -1], [0, 0, 0]],
+      "old_log_probs": [[-1.2, -1.2, 0], [-1.2, -1.2, -1.2], [0, 0, 0]],
+      "advantages": [[0.5, 0.5, 0.5], [-0.4, -0.4, -0.4], [1, 1, 1]],
+      "mask": [[1, 1, 0], [1, 1, 1], [0, 0, 0]]
+    },
+    "rollout_log_probs": [[-1.05, -1.2, 0], [-1.3, -1.2, -1.1], [0, 0, 0]]
+  }
+}

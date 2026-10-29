@@ -35,10 +35,18 @@ from .testing import (
 )
 from .version import __version__
 from .objective import ObjectiveSpec, ObjectiveTrace, ObjectiveAuditResult, audit_objective, objective_report
+from .full_objective import (FullObjectiveSpec, FullObjectiveTrace, FullObjectiveResult,
+                             KLSpec, ReductionSpec, audit_full_objective)
+from .importance_correction import ImportanceCorrectionSpec
+from .objective_window import (DenominatorCountSpec,ObjectiveWindowSpec,ObjectiveWindowBatch,ObjectiveWindowResult,
+                               audit_objective_window)
 from .objective_runtime import ObjectiveRuntimeCapture
 from .objective_benchmark import run_objective_benchmark
 
 __all__ = [
+    "DenominatorCountSpec", "ObjectiveWindowSpec", "ObjectiveWindowBatch", "ObjectiveWindowResult", "audit_objective_window",
+    "ImportanceCorrectionSpec",
+    "FullObjectiveSpec", "FullObjectiveTrace", "FullObjectiveResult", "KLSpec", "ReductionSpec", "audit_full_objective",
     "run_objective_benchmark",
     "ObjectiveRuntimeCapture",
     "ObjectiveSpec", "ObjectiveTrace", "ObjectiveAuditResult", "audit_objective", "objective_report",

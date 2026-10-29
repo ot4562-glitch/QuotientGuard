@@ -57,6 +57,8 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     sub = parser.add_subparsers(dest="command", required=True)
+    from .survey_cli import add_survey_parsers
+    add_survey_parsers(sub)
 
     objective = sub.add_parser("objective-audit", help="interpret a declared PPO objective trace")
     objective.add_argument("input", type=Path)
@@ -64,6 +66,18 @@ def build_parser() -> argparse.ArgumentParser:
     objective.add_argument("--out", type=Path)
     objective.add_argument("--markdown", type=Path)
     objective.add_argument("--json", action="store_true")
+
+    full = sub.add_parser('full-objective-audit', help='compare an explicit composite loss and all input gradients')
+    full.add_argument('input', type=Path)
+    full.add_argument('--out', type=Path)
+    full.add_argument('--json', action='store_true')
+    full.add_argument('--device', default='cpu', choices=('cpu', 'cuda'))
+
+    window = sub.add_parser('objective-window-audit', help='verify counted denominators and effective microbatch equivalence')
+    window.add_argument('input', type=Path)
+    window.add_argument('--out', type=Path)
+    window.add_argument('--json', action='store_true')
+    window.add_argument('--device', default='cpu', choices=('cpu', 'cuda'))
 
     objective_bench = sub.add_parser("objective-benchmark", help="independent PPO controls and seeded holdout")
     objective_bench.add_argument("--out", type=Path)
@@ -187,6 +201,44 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+
+    if args.command.startswith('survey-'):
+        from .survey_cli import run_survey_command
+        return run_survey_command(args)
+
+    if args.command in {'full-objective-audit', 'objective-window-audit'}:
+        try:
+            import torch
+        except ImportError:
+            import sys
+            print('Install quotientguard[objective] to run full/window objective audits.', file=sys.stderr)
+            return 2
+
+    if args.command == 'objective-window-audit':
+        from .objective_window import ObjectiveWindowSpec, ObjectiveWindowBatch, audit_objective_window
+        from .full_objective import FullObjectiveTrace
+        payload = _load_json(args.input)
+        reference = payload.get('reference_trace')
+        output = audit_objective_window(ObjectiveWindowSpec.from_dict(payload['spec']),
+            [ObjectiveWindowBatch.from_dict(item) for item in payload['batches']],
+            reference_trace=FullObjectiveTrace.from_dict(reference) if reference is not None else None,
+            device=args.device).to_dict()
+        if args.out:
+            _write_json(args.out, output)
+        print(json.dumps(output, indent=2, sort_keys=True, allow_nan=False) if args.json
+              else output['status']+' (REFERENCE_WINDOW_REPLAY)\n'+', '.join(output['reasons']+output['mismatches']))
+        return 0 if output['status'] == 'SUPPORTED' else 2 if output['status'] in {'UNSUPPORTED', 'INSUFFICIENT_EVIDENCE'} else 1
+
+    if args.command == 'full-objective-audit':
+        from .full_objective import FullObjectiveSpec, FullObjectiveTrace, audit_full_objective
+        payload = _load_json(args.input)
+        output = audit_full_objective(FullObjectiveSpec.from_dict(payload['spec']),
+            FullObjectiveTrace.from_dict(payload['trace']), device=args.device).to_dict()
+        if args.out:
+            _write_json(args.out, output)
+        print(json.dumps(output, indent=2, sort_keys=True, allow_nan=False) if args.json
+              else output['status']+' (REFERENCE_REPLAY)\n'+', '.join(output['reasons']+output.get('mismatches', [])))
+        return 0 if output['status'] == 'SUPPORTED' else 2 if output['status'] in {'UNSUPPORTED', 'INSUFFICIENT_EVIDENCE'} else 1
 
     if args.command == "objective-audit":
         from .objective import ObjectiveSpec, ObjectiveTrace, audit_objective, objective_report

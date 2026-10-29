@@ -8,6 +8,15 @@ except ImportError:
 
 @unittest.skipIf(torch is None, 'install quotientguard[objective]')
 class ObjectiveBenchmarkTests(unittest.TestCase):
+    def test_development_contracts_have_separate_seeded_holdout(self):
+        from quotientguard import run_objective_benchmark
+        result = run_objective_benchmark()
+        for partition in ('development_controls', 'development_holdout'):
+            self.assertIn(partition, result, 'development contracts need their own executed controls')
+            self.assertGreater(len(result[partition]['cases']), 0)
+            self.assertTrue(all(c['pass'] for c in result[partition]['cases']))
+        self.assertNotEqual(result['development_controls']['seed'], result['development_holdout']['seed'])
+
     def test_independent_controls_and_holdout(self):
         import quotientguard
         self.assertTrue(hasattr(quotientguard, 'run_objective_benchmark'),

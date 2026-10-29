@@ -15,9 +15,15 @@ def _execute(spec, current, old, advantages, mask, weights=None):
     old = torch.tensor(old, dtype=dtype)
     a = torch.tensor(advantages, dtype=dtype)
     m = torch.tensor(mask, dtype=dtype)
-    delta = x - old
-    if spec.ratio_level == "sequence_product":
-        delta = (delta * m).sum(dim=1, keepdim=True)
+    selected_x = torch.where(m.bool(), x, 0.) if spec.masking == "select_inputs" else x
+    selected_old = torch.where(m.bool(), old, 0.) if spec.masking == "select_inputs" else old
+    delta = selected_x - selected_old
+    if spec.ratio_level != "token":
+        total = (delta * m).sum(dim=1, keepdim=True)
+        if spec.ratio_level != "sequence_product":
+            total = total / m.sum(dim=1, keepdim=True).clamp_min(1)
+        delta = (selected_x - selected_x.detach() + total.detach()
+                 if spec.ratio_level == "sequence_token" else total)
     ratio = delta.exp()
     raw = -(ratio * a)
     capped = -(ratio.clamp(spec.clip_lower, spec.clip_upper) * a)
@@ -25,9 +31,18 @@ def _execute(spec, current, old, advantages, mask, weights=None):
     if weights is not None:
         loss_tokens = loss_tokens * torch.tensor(weights, dtype=dtype)
     loss_tokens = loss_tokens * m
-    denominator = (1 if spec.reduction == "sum" else spec.denominator
-                   if spec.reduction == "explicit" else m.sum())
-    loss = loss_tokens.sum() / denominator
+    if spec.reduction == "per_sequence_active_mean":
+        counts = m.sum(-1)
+        if spec.empty_mask_policy == "zero":
+            counts = counts.clamp_min(1)
+        loss = (loss_tokens.sum(-1) / counts).mean()
+    else:
+        denominator = (1 if spec.reduction == "sum" else spec.denominator
+                       if spec.reduction == "explicit" else len(current) * spec.completion_length
+                       if spec.reduction == "fixed_length_mean" else m.sum())
+        if spec.reduction == "active_mean" and spec.empty_mask_policy == "zero":
+            denominator = denominator.clamp_min(1)
+        loss = loss_tokens.sum() / denominator
     loss.backward()
     trace = ObjectiveTrace(x, old, a, m, importance_weights=weights,
         observed_coefficients=x.grad * spec.gradient_scale, observed_loss=loss,
@@ -100,17 +115,44 @@ def _partition(seed, normal_count):
         "normal_coefficient_spread_cases_explained": sum(c["coefficient_spread"] and c["pass"] for c in normal)}}
 
 
+def _development_partition(seed, draws):
+    """Separate seeded controls of new contracts, not an external accuracy set."""
+    rng = random.Random(seed)
+    cases = []
+    for dtype in ("float16", "bfloat16", "float32", "float64"):
+        for mode in ("token", "sequence_product", "sequence_masked_geometric_mean", "sequence_token"):
+            for reduction in ("sum", "active_mean", "per_sequence_active_mean", "fixed_length_mean", "explicit"):
+                for draw in range(draws):
+                    values = [rng.choice((0., math.log(.4), math.log(1.6))) for _ in range(2)]
+                    current = [[values[0], values[0], float('-inf')], [values[1]] * 3]
+                    old = [[0., 0., float('-inf')], [0.] * 3]
+                    advantages = [[rng.choice((-2., 0., 1.)) for _ in range(3)] for _ in range(2)]
+                    spec = ObjectiveSpec(dtype=dtype, ratio_level=mode, reduction=reduction,
+                        completion_length=8, denominator=7., masking="select_inputs")
+                    result = _execute(spec, current, old, advantages, [[1, 1, 0], [1, 1, 1]])
+                    cases.append({"case": f"{dtype}-{mode}-{reduction}-{draw}",
+                        "expected": "EXPECTED_OBJECTIVE_EFFECT", "actual": result.verdict,
+                        "pass": result.verdict == "EXPECTED_OBJECTIVE_EFFECT",
+                        "audit_sha256": result.to_dict()["audit_sha256"]})
+    return {"seed": seed, "cases": cases, "case_count": len(cases),
+            "passed": sum(c["pass"] for c in cases)}
+
+
 def run_objective_benchmark():
     import torch
     controls = _partition(104729, 8)
     holdout = _partition(130363, 32)
+    development_controls = _development_partition(32416190071, 2)
+    development_holdout = _development_partition(32416187567, 8)
     names = ["Open-Instruct", "Prime RL", "Verifiers", "Axolotl", "ms-swift", "trlx",
              "DeepSpeedExamples", "Open-Reasoner-Zero", "torchtune", "CleanRL"]
     return {"schema_version": "quotientguard-objective-benchmark-v1",
-        "outcome": "PASS" if all(c["pass"] for p in (controls, holdout) for c in p["cases"]) else "FAIL",
+        "outcome": "PASS" if all(c["pass"] for p in (controls, holdout, development_controls,
+                development_holdout) for c in p["cases"]) else "FAIL",
         "environment": {"torch": torch.__version__, "device": "cpu",
                         "dtypes": ["float16", "bfloat16", "float32", "float64"]},
         "controls": controls, "holdout": holdout,
+        "development_controls": development_controls, "development_holdout": development_holdout,
         "historical_review": {"source": "owner-supplied historical summary; artifacts unavailable in public checkout",
             "historical_numerical_candidates": 7, "historical_integrated_confirmed_defects": 0,
             "used_as_ground_truth": False,

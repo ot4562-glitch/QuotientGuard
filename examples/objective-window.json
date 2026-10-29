@@ -1,0 +1,31 @@
+{
+  "spec": {
+    "reference": {
+      "policy": {"dtype": "float64", "masking": "select_inputs"},
+      "policy_reduction": {"reduction": "explicit", "denominator": 4, "denominator_scope": "accumulation_window"}
+    },
+    "counts": {"policy": {"unit": "active_tokens", "declared_total": 4}}
+  },
+  "batches": [
+    {
+      "spec": {
+        "policy": {"dtype": "float64", "masking": "select_inputs"},
+        "policy_reduction": {"reduction": "explicit", "denominator": 4, "denominator_scope": "accumulation_window", "scale": 2}
+      },
+      "trace": {"policy": {"current_log_probs": [[0]], "old_log_probs": [[0]], "advantages": [[1]], "mask": [[1]]}},
+      "microbatch_index": 0,
+      "backward_scale": 0.5,
+      "observed_backward_gradients": {"current_log_probs": [[-0.25]]}
+    },
+    {
+      "spec": {
+        "policy": {"dtype": "float64", "masking": "select_inputs"},
+        "policy_reduction": {"reduction": "explicit", "denominator": 4, "denominator_scope": "accumulation_window", "scale": 2}
+      },
+      "trace": {"policy": {"current_log_probs": [[0, 0, 0]], "old_log_probs": [[0, 0, 0]], "advantages": [[3, 3, 3]], "mask": [[1, 1, 1]]}},
+      "microbatch_index": 1,
+      "backward_scale": 0.5,
+      "observed_backward_gradients": {"current_log_probs": [[-0.75, -0.75, -0.75]]}
+    }
+  ]
+}

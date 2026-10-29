@@ -1,0 +1,15 @@
+{
+  "spec": {
+    "policy": {"dtype": "float64", "reduction": "active_mean", "masking": "select_inputs"},
+    "kl": {"estimator": "k3", "direction": "reference_minus_current", "coefficient": 0.04,
+           "delta_bounds": [-20, 20], "value_bounds": [-10, 10],
+           "score_weight": true, "score_detach_on_delta_clamp": true},
+    "entropy_coefficient": 0.01
+  },
+  "trace": {
+    "policy": {"current_log_probs": [[-0.9, -1.1, -1]], "old_log_probs": [[-1, -1, -1]],
+               "advantages": [[1, -0.5, 0]], "mask": [[1, 1, 0]]},
+    "reference_log_probs": [[-1.2, -1.2, -1]],
+    "entropy": [[0.7, 0.8, 0]]
+  }
+}

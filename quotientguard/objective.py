@@ -17,9 +17,9 @@ class ObjectiveSpec:
     objective: str = "ppo_clipped"
     clip_lower: float = 0.8
     clip_upper: float = 1.2
-    ratio_level: str = "token"  # or exp(sum(active log ratios)) per sequence
+    ratio_level: str = "token"
     importance_level: str = "token"  # detached correction, outside clipping
-    reduction: str = "active_mean"  # sum, active_mean, explicit
+    reduction: str = "active_mean"
     denominator: float | None = None
     detach_old_policy: bool = True
     detach_advantage: bool = True
@@ -28,6 +28,9 @@ class ObjectiveSpec:
     gradient_scale: float = 1.0  # explicitly measured uniform post-backward scale
     atol: float | None = None
     rtol: float | None = None
+    completion_length: int | None = None
+    masking: str = "literal"  # preserve v1.1 arithmetic; select_inputs is explicit
+    empty_mask_policy: str = "undefined"  # zero opts into clamped empty means
 
 
 @dataclass
@@ -120,20 +123,38 @@ def _inputs(spec: ObjectiveSpec, trace: ObjectiveTrace):
     if any(v < 0 for v in _flatten(weights)):
         raise ValueError("importance weights must be nonnegative")
     denominator = (1. if spec.reduction == "sum" else spec.denominator
-                   if spec.reduction == "explicit" else sum(_flatten(data[3])))
+                   if spec.reduction == "explicit" else rows * (spec.completion_length or 0)
+                   if spec.reduction == "fixed_length_mean" else float(rows)
+                   if spec.reduction == "per_sequence_active_mean" else sum(_flatten(data[3])))
+    if denominator == 0 and spec.empty_mask_policy == "zero" and spec.reduction == "active_mean":
+        denominator = 1.
     return (*data, weights, denominator)
+
+
+def _row_denominators(spec, mask, denominator):
+    if spec.reduction == "per_sequence_active_mean":
+        return [len(mask) * (max(1., sum(row)) if spec.empty_mask_policy == "zero"
+                            else sum(row)) for row in mask]
+    return [denominator] * len(mask)
 
 
 def _supported(spec: ObjectiveSpec) -> list[str]:
     reasons = []
     if spec.objective != "ppo_clipped":
         reasons.append("unsupported_objective")
-    if spec.ratio_level not in {"token", "sequence_product"}:
+    if spec.ratio_level not in {"token", "sequence_product", "sequence_masked_geometric_mean", "sequence_token"}:
         reasons.append("unsupported_ratio_level")
     if spec.importance_level not in {"token", "sequence"}:
         reasons.append("unsupported_importance_level")
-    if spec.reduction not in {"sum", "active_mean", "explicit"}:
+    if spec.reduction not in {"sum", "active_mean", "explicit", "per_sequence_active_mean", "fixed_length_mean"}:
         reasons.append("unsupported_reduction")
+    if spec.reduction == "fixed_length_mean" and (isinstance(spec.completion_length, bool)
+            or not isinstance(spec.completion_length, int) or spec.completion_length <= 0):
+        reasons.append("invalid_fixed_completion_length")
+    if spec.masking not in {"literal", "select_inputs"}:
+        reasons.append("unsupported_masking")
+    if spec.empty_mask_policy not in {"undefined", "zero"}:
+        reasons.append("unsupported_empty_mask_policy")
     if not all((spec.detach_old_policy, spec.detach_advantage, spec.detach_importance)):
         reasons.append("unsupported_stop_gradient_boundary")
     if spec.dtype not in {"float16", "bfloat16", "float32", "float64"}:
@@ -203,7 +224,9 @@ def audit_objective(spec: ObjectiveSpec, trace: ObjectiveTrace, *, oracle: bool 
             # Boolean/integer masks do not change the floating computation precision.
             if name != "mask":
                 reasons.append("tensor_dtype_differs_from_declared_precision:" + name)
-    if denominator is None or not math.isfinite(denominator) or denominator <= 0:
+    denominators = _row_denominators(spec, mask, denominator)
+    data["per_sequence_denominators"] = denominators
+    if any(d is None or not math.isfinite(d) or d <= 0 for d in denominators):
         reasons.append("undefined_normalization_denominator")
     expected, branches, ratios = [], [], []
     maximum = {"float16": 65504., "bfloat16": 3.3895313892515355e38,
@@ -217,11 +240,19 @@ def audit_objective(spec: ObjectiveSpec, trace: ObjectiveTrace, *, oracle: bool 
                          for values in (current, old, adv, weights) for v in _flatten(values))
     absolute_surrogate_sum = 0.
     if not reasons:
-        for xs, os, ads, ms, ws in zip(current, old, adv, mask, weights):
+        for xs, os, ads, ms, ws, row_denominator in zip(current, old, adv, mask, weights, denominators):
+            if spec.masking == "select_inputs":
+                xs = [x if m else 0. for x, m in zip(xs, ms)]
+                os = [o if m else 0. for o, m in zip(os, ms)]
+                ads = [a if m else 0. for a, m in zip(ads, ms)]
+                ws = [w if m else 0. for w, m in zip(ws, ms)]
             log_ratios = [x - o for x, o in zip(xs, os)]
-            if spec.ratio_level == "sequence_product":
+            if spec.ratio_level != "token":
                 # Deliberately literal multiply: invalid padded arithmetic is not hidden.
-                ratio = _exp(sum(v * m for v, m in zip(log_ratios, ms)))
+                total = sum(v * m for v, m in zip(log_ratios, ms))
+                if spec.ratio_level != "sequence_product":
+                    total /= max(1., sum(ms))
+                ratio = _exp(total)
                 rs = [ratio] * len(xs)
             else:
                 rs = [_exp(v) for v in log_ratios]
@@ -245,12 +276,13 @@ def audit_objective(spec: ObjectiveSpec, trace: ObjectiveTrace, *, oracle: bool 
                     "upper_clipped" if a > 0 and r > spec.clip_upper else
                     "lower_clipped" if a < 0 and r < spec.clip_lower else "active")
                 # Boundary derivative is provisional; interpretation fails closed above.
-                value = (-a * r * w / denominator * spec.gradient_scale
+                value = (-a * r * w / row_denominator * spec.gradient_scale
                          if branch == "active" else 0.)
                 row.append(value)
                 bs.append(branch)
-            if spec.ratio_level == "sequence_product":
-                row = [sum(row) * m for m in ms]
+            if spec.ratio_level in {"sequence_product", "sequence_masked_geometric_mean"}:
+                divisor = max(1., sum(ms)) if spec.ratio_level == "sequence_masked_geometric_mean" else 1.
+                row = [sum(row) * m / divisor for m in ms]
             expected.append(row)
             branches.append(bs)
             ratios.append(rs)
@@ -283,7 +315,10 @@ def audit_objective(spec: ObjectiveSpec, trace: ObjectiveTrace, *, oracle: bool 
         if not data["loss_matches_oracle"]:
             reasons.append("observed_loss_differs_from_oracle")
     executed_or_observed_anomaly = any(event["execution"] != "SUPPLIED_INPUT" for event in numerical)
-    if numerical and not executed_or_observed_anomaly:
+    selected_replay_proven_finite = (spec.masking == "select_inputs"
+        and data.get("oracle", {}).get("loss_finite")
+        and data.get("oracle", {}).get("gradient_finite"))
+    if numerical and not executed_or_observed_anomaly and not selected_replay_proven_finite:
         reasons.append("nonfinite_input_loss_path_unproven")
     if executed_or_observed_anomaly:
         verdict = "NUMERICAL_ANOMALY_OBSERVED"
@@ -311,3 +346,9 @@ def objective_report(result: ObjectiveAuditResult | dict[str, Any]) -> str:
         "Numerical events: " + str(payload.get("numerical_events", [])),
         "Reasons: " + str(payload.get("reasons", [])), "",
         *payload.get("limitations", []), ""])
+
+
+# Explicit opt-in composite contracts; legacy audit_objective remains unchanged.
+from .full_objective import (FullObjectiveSpec, FullObjectiveTrace, FullObjectiveResult,
+                             KLSpec, ReductionSpec, audit_full_objective)
+from .importance_correction import ImportanceCorrectionSpec

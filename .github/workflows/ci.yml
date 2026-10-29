@@ -29,6 +29,12 @@ jobs:
         run: quotientguard objective-benchmark --out objective-benchmark.json
       - name: Public certification
         run: python -m quotientguard certify
+      - name: Full objective and counted-window CLI examples
+        run: |
+          python -m quotientguard full-objective-audit examples/full-objective.json --json
+          python -m quotientguard full-objective-audit examples/ppo-rollout-correction.json --json
+          python -m quotientguard full-objective-audit examples/gspo-rollout-correction.json --json
+          python -m quotientguard objective-window-audit examples/objective-window.json --json
       - name: Build wheel and source distribution
         run: python -m build
       - name: Installed-wheel smoke outside checkout
@@ -40,6 +46,8 @@ jobs:
           /tmp/qg-wheel/bin/quotientguard --version
           /tmp/qg-wheel/bin/quotientguard demo
           /tmp/qg-wheel/bin/quotientguard certify
+          python -m pip install "$GITHUB_WORKSPACE"/dist/*.whl --force-reinstall --no-deps
+          python "$GITHUB_WORKSPACE/tools/check_installed_v12.py" "$GITHUB_WORKSPACE"
       - name: Evidence
         uses: actions/upload-artifact@v4
         with:

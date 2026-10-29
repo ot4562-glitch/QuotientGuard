@@ -43,10 +43,11 @@ Before tagging a new stable version:
 3. Update **both** the README's `Current stable release` line and
    its version-history table, plus the corresponding dated
    `CHANGELOG.md` section. Only describe *shipped and validated* features.
-4. Review the upstream evidence ledger in `docs/FEEDBACK.md`.
-   Promote a contribution into the README's `Verified upstream fixes`
-   table **only** after the upstream PR is actually merged and supported
-   by evidence; classify the role of QuotientGuard accurately.
+4. Review the **local-only internal** upstream evidence ledger (not part of
+   the public source tree). Promote an entry into the README's `Verified
+   upstream fixes` table **only** after the upstream PR actually merges and
+   is supported by reproducible evidence; identify QuotientGuard's role
+   accurately. Never commit internal notes as a public documentation file.
 5. Run `python tools/check_release_docs.py` and
    `python tools/validate_release.py`, verify independent wheel/sdist
    install, all required tests/certification, and supported CI environments.
@@ -67,6 +68,6 @@ Start with [README.md](README.md), then
 [docs/REFERENCE.md](docs/REFERENCE.md),
 [docs/OBJECTIVE_AUDIT.md](docs/OBJECTIVE_AUDIT.md) and
 [docs/INTEGRATIONS.md](docs/INTEGRATIONS.md).
-The [feedback ledger](docs/FEEDBACK.md) is a backlog, **not** a
-shipping or bug-confirmation claim. Historical research scope and
-prior release documents remain retrievable from versioned Git tags.
+Internal feedback and open-PR tracking stay **outside this public checkout**;
+they are not shipping or bug-confirmation claims. Historical public research
+scope and prior release documents remain retrievable from versioned Git tags.

@@ -1,0 +1,17 @@
+{
+  "spec": {
+    "policy": {"dtype": "float64", "reduction": "active_mean"},
+    "ratio_delta_bounds": [-20, 20],
+    "correction": "gated_old_rollout",
+    "importance_correction": {"mode": "mask", "level": "token", "gating": "ratio", "lower": 0.5, "upper": 2.0}
+  },
+  "trace": {
+    "policy": {
+      "current_log_probs": [[-0.9, -1.1, 0]],
+      "old_log_probs": [[-1, -1, 0]],
+      "advantages": [[1, -0.5, 0]],
+      "mask": [[1, 1, 0]]
+    },
+    "rollout_log_probs": [[-1.4054651081081644, -0.6433250560612676, 0]]
+  }
+}
