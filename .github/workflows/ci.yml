@@ -2,10 +2,17 @@ name: ci
 
 on:
   push:
+    branches: [main]
+    tags: ['**']
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || format('{0}-{1}', github.ref, github.sha) }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   objective:
@@ -49,9 +56,11 @@ jobs:
           python -m pip install "$GITHUB_WORKSPACE"/dist/*.whl --force-reinstall --no-deps
           python "$GITHUB_WORKSPACE/tools/check_installed_v12.py" "$GITHUB_WORKSPACE"
       - name: Evidence
+        if: github.ref_type != 'tag'
         uses: actions/upload-artifact@v4
         with:
           name: objective-evidence
+          retention-days: 7
           path: |
             objective-benchmark.json
             dist/*
