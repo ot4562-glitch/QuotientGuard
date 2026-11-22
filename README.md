@@ -167,6 +167,15 @@ GitHub had recorded no upstream merge for this work as of 2026-11-22.
 | Repository | Opened issue or PR | Change | Evidence | QuotientGuard feature | Merge status |
 | --- | --- | --- | --- | --- | --- |
 | AReaL | [Issue #1986](https://github.com/areal-project/AReaL/issues/1986) · [PR #1987](https://github.com/areal-project/AReaL/pull/1987) | Mask excluded PPO log-ratios before exponentiation | [Pinned CPU before/after replay and independent gradient](https://github.com/areal-project/AReaL/pull/1987) | Full-objective audit flagged a numerical anomaly before the fix and returned `SUPPORTED` after it | PR open |
+| torchtune | [PR #3021](https://github.com/meta-pytorch/torchtune/pull/3021) | Mask padding log-ratios before PPO exponentiation | [Pinned CPU before/after replay and eight overflow or sentinel regressions](https://github.com/meta-pytorch/torchtune/pull/3021) | Full-objective audit of masked PPO loss and gradients | PR open |
+| Open-Reasoner-Zero | [PR #78](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/pull/78) | Prevent excluded tokens from overflowing PPO ratios | [Pinned CPU replay with an independent per-sequence gradient](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/pull/78) | Full-objective audit of PPO masking and per-sequence normalization | PR open |
+| LLM-Dojo | [PR #41](https://github.com/mst272/LLM-Dojo/pull/41) | Select zero for rejected ICEPOP weights | [Pinned CPU before/after replay and four-dtype regression](https://github.com/mst272/LLM-Dojo/pull/41) | Full-objective audit with independent importance weights | PR open |
+| MusicRLVR | [PR #2](https://github.com/feliperodriguezborquez/MusicRLVR/pull/2) | Mask excluded log-ratios in the GRPO policy loss | [Pinned CPU replay and finite and overflow controls](https://github.com/feliperodriguezborquez/MusicRLVR/pull/2) | Full-objective audit of masked policy loss and gradients | PR open |
+| sanketsans/rlvr | [PR #6](https://github.com/sanketsans/rlvr/pull/6) | Define a zero centered advantage for a single completion token | [Pinned CPU replay and native MOPD loss regression](https://github.com/sanketsans/rlvr/pull/6) | Full-objective audit of policy loss and gradients under the singleton advantage convention | PR open |
+
+In the five new PRs, QuotientGuard reported a numerical anomaly before each
+change and returned `SUPPORTED` after the loss and gradients matched an
+independent reference. The PRs record the tested commit, inputs and scope.
 
 The v2.0.0 evaluation executed selected pinned CPU loss and backward paths
 across 20 repositories. It included Open-R1's pinned TRL dependency and
