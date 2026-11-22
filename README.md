@@ -161,37 +161,18 @@ inspection evidence remain outside the public distribution.
 
 ## Verified upstream fixes
 
-**Confirmed merged fixes: 0 as of 2026-11-22.** The table records public
-submissions and the evidence each provides. Most historical results come from
-independent CPU reproductions after QuotientGuard-assisted triage. The last
-column records GitHub merge status for each submission.
+This table covers submissions based on QuotientGuard v2.0.0 evidence.
+GitHub had recorded no upstream merge for this work as of 2026-11-22.
 
 | Repository | Opened issue or PR | Change | Evidence | QuotientGuard feature | Merge status |
 | --- | --- | --- | --- | --- | --- |
-| AReaL | [Issue #1986](https://github.com/areal-project/AReaL/issues/1986) | Report a NaN gradient from a version-masked PPO token with a finite loss | [Pinned CPU actor replay with a real policy-version mask and independent gradient](https://github.com/areal-project/AReaL/issues/1986) | Full-objective loss and gradient audit flagged a numerical anomaly | Open issue |
-| OpenRLHF | [PR #1425](https://github.com/OpenRLHF/OpenRLHF/pull/1425) | Add a regression test for clipped, masked PPO token-mean gradients | [Native loss and backward replay, plus passing pre-commit](https://github.com/OpenRLHF/OpenRLHF/pull/1425/checks) | Objective and accumulation-window audit matched the contract | Open |
-| OpenRLHF | [PR #1382](https://github.com/OpenRLHF/OpenRLHF/pull/1382) | Propose rejecting sequences whose weighted PPO loss overflows | [CPU arithmetic reproduction and regression tests](https://github.com/OpenRLHF/OpenRLHF/pull/1382) | Runtime coefficient capture rejected non-finite inputs | Closed, unmerged |
-| NeMo RL | [PR #4883](https://github.com/NVIDIA-NeMo/RL/pull/4883) | Propose rejecting seq-mask TIS sequences with non-finite active weights | [Source-equivalent CPU before/after and four-dtype regression](https://github.com/NVIDIA-NeMo/RL/pull/4883) | Coefficient comparison on synthetic traces | Closed, unmerged |
-| trlx | [PR #614](https://github.com/CarperAI/trlx/pull/614) | Propose masking excluded PPO log-ratios before exponentiation | [Source-equivalent CPU loss and gradient reproduction](https://github.com/CarperAI/trlx/pull/614) | Coefficient comparison on synthetic traces | Closed, unmerged |
-| torchtune | [PR #3006](https://github.com/meta-pytorch/torchtune/pull/3006) | Propose zeroing PPO padding log-ratios before exponentiation | [CPU before/after and padding regression tests](https://github.com/meta-pytorch/torchtune/pull/3006) | Coefficient comparison on synthetic traces | Closed, unmerged |
-| Open-Reasoner-Zero | [PR #77](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/pull/77) | Propose isolating masked PPO tokens and defining the empty-mask result | [Source-equivalent CPU before/after and regression tests](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/pull/77) | Coefficient comparison on synthetic traces | Closed, unmerged |
-| DeepSpeedExamples | [PR #1022](https://github.com/deepspeedai/DeepSpeedExamples/pull/1022) | Propose masking excluded DeepSpeed-Chat PPO log-ratios before exponentiation | [Source-equivalent CPU before/after and regression test](https://github.com/deepspeedai/DeepSpeedExamples/pull/1022) | Coefficient comparison on synthetic traces | Closed, unmerged |
-| Axolotl | [PR #4209](https://github.com/axolotl-ai-cloud/axolotl/pull/4209) | Propose masking excluded async GRPO tokens before computing importance ratios | [Source-equivalent CPU replay and token/sequence regression tests](https://github.com/axolotl-ai-cloud/axolotl/pull/4209) | Coefficient comparison on synthetic traces | Closed, unmerged |
-| LLM-Dojo | [PR #40](https://github.com/mst272/LLM-Dojo/pull/40) | Propose excluding rejected ICEPOP weights before multiplication | [Isolated policy-loss CPU replay across four dtypes](https://github.com/mst272/LLM-Dojo/pull/40) | Coefficient capture rejected a NaN; finite coefficient spread was expected | Closed, unmerged |
-| MusicRLVR | [PR #1](https://github.com/feliperodriguezborquez/MusicRLVR/pull/1) | Propose masking excluded GRPO policy and KL log-probabilities before exponentiation | [Pinned CPU loss replay and before/after regression tests](https://github.com/feliperodriguezborquez/MusicRLVR/pull/1) | Source-only numerical-risk screen flagged the site for review | Closed, unmerged |
-| sanketsans/rlvr | [PR #5](https://github.com/sanketsans/rlvr/pull/5) | Propose zero-centered singleton MOPD advantages | [Native loss/backward reproducer and 41 passing patched tests](https://github.com/sanketsans/rlvr/pull/5) | Source-only screen guided triage; manual review found the defect | Closed, unmerged |
-| ms-swift | [Issue #10431](https://github.com/modelscope/ms-swift/issues/10431) | Report a possible masked GRPO overflow | [Source-equivalent CPU example; trainer reachability unverified](https://github.com/modelscope/ms-swift/issues/10431) | Coefficient comparison on synthetic traces | Closed issue |
+| AReaL | [Issue #1986](https://github.com/areal-project/AReaL/issues/1986) · [PR #1987](https://github.com/areal-project/AReaL/pull/1987) | Mask excluded PPO log-ratios before exponentiation | [Pinned CPU before/after replay and independent gradient](https://github.com/areal-project/AReaL/pull/1987) | Full-objective audit flagged a numerical anomaly before the fix and returned `SUPPORTED` after it | PR open |
 
-The v2.0.0 evaluation exercised pinned CPU loss code from TRL, verl,
-OpenRLHF, NeMo RL and AReaL. All 102 finite-input comparisons matched their
-independent reference. OpenRLHF also passed 30 accumulation-window checks.
-The separate AReaL boundary case above triggered a direct numerical verdict.
-The evaluation covered loss and gradient boundaries. It did not run full
-training jobs or measure the boundary case's frequency in real rollouts.
-
-A bounded source-only screen covered 679 Python files from 20 pinned
-repositories. Two had complete coverage under that screen and 18 had partial
-coverage. Its 390 source candidates require runtime evidence before filing.
+The v2.0.0 evaluation executed selected pinned CPU loss and backward paths
+across 20 repositories. It included Open-R1's pinned TRL dependency and
+isolated native loss functions with explicitly supplied reductions where
+needed. OpenRLHF also passed 30 accumulation-window checks. Full trainer,
+optimizer, GPU and multi-node coverage depends on separate execution evidence.
 
 ## Versions and release discipline
 
