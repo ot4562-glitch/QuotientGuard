@@ -1,5 +1,9 @@
 # PPO objective-aware audit
 
+For the optimizer boundary, use the [AdamW trace audit](ADAMW_AUDIT.md).
+An objective report covers its declared observations. The AdamW report
+requires its own state and consumed-gradient records.
+
 The v1 compatibility screen and v1.1 objective diagnostic answer different
 questions. A coefficient spread inside a declared class remains a research
 observation even when the implementation exactly follows PPO.

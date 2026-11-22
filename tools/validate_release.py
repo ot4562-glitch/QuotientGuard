@@ -76,6 +76,8 @@ def main(argv=None):
             ('objective-window-audit', 'objective-window.json'))):
         run(f'v12-cli-{index}', [sys.executable, '-m', 'quotientguard', command,
                                   ROOT / 'examples' / filename, '--json'])
+    run('adamw-cli', [sys.executable, '-m', 'quotientguard', 'adamw-audit',
+                     ROOT / 'examples/adamw-audit.json', '--json'])
     run("build", [sys.executable, "-m", "build", '--outdir', dist])
     wheel = dist / f"quotientguard-{version}-py3-none-any.whl"
     sdist = dist / f"quotientguard-{version}.tar.gz"
@@ -93,6 +95,8 @@ def main(argv=None):
             "assert 'site-packages' in str(Path(q.__file__)); print(q.__version__)"], cwd=WORK)
         run(kind + "-objective-json", [exe, "-m", "quotientguard", "objective-audit",
             ROOT / "examples/ppo-objective.json", "--json"], cwd=WORK)
+        run(kind + "-adamw-json", [exe, "-m", "quotientguard", "adamw-audit",
+            ROOT / "examples/adamw-audit.json", "--json"], cwd=WORK)
         run(kind + '-survey-help', [exe, '-m', 'quotientguard', 'survey-screen', '--help'], cwd=WORK)
         run(kind + '-native-api', [exe, '-c',
             'from quotientguard.native_validation import not_executed_report; '
@@ -124,7 +128,8 @@ def main(argv=None):
         "dtypes": benchmark["environment"]["dtypes"], "wheel_install": "PASS",
         "sdist_install": "PASS", "installed_wheel_oracle": "PASS",
         "readme_cli_smokes": len(smokes), "v12_cli_smokes": 4,
-        "installed_v12_full_window_parameter_training_survey": "PASS", "build": "PASS"}
+        "installed_v12_full_window_parameter_training_survey": "PASS",
+        "adamw_cli_source_wheel_sdist": "PASS", "build": "PASS"}
     (evidence / f"release-validation-v{version}.json").write_text(
         json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     # These hashes describe the validated binaries, not subsequently rebuilt copies.

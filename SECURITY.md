@@ -2,7 +2,8 @@
 
 ## Supported version
 
-QuotientGuard v1.0.0 is the frozen public release.
+The current published release is [v1.2.0](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v1.2.0).
+See the [README](README.md) for the current source candidate.
 
 ## Reporting a vulnerability
 

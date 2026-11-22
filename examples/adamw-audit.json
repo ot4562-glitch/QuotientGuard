@@ -1,0 +1,153 @@
+{
+  "binding": {
+    "run_id": "replay",
+    "step_id": "window-2",
+    "parameter_id": "actor.weight",
+    "shape": [
+      2
+    ]
+  },
+  "authorized": {
+    "stage": "authorized",
+    "source": "retained checkpoint",
+    "verified": true,
+    "binding": {
+      "run_id": "replay",
+      "step_id": "window-2",
+      "parameter_id": "actor.weight",
+      "shape": [
+        2
+      ]
+    },
+    "parameters": [
+      0.37370000062500003,
+      -0.6727250024999997
+    ],
+    "state": {
+      "kind": "initialized",
+      "step": 1,
+      "exp_avg": [
+        0.12000000000000002,
+        -0.030000000000000006
+      ],
+      "exp_avg_sq": [
+        0.008000000000000007,
+        0.0005000000000000004
+      ]
+    },
+    "hyperparameters": {
+      "lr": 0.025,
+      "eps": 1e-08,
+      "weight_decay": 0.13,
+      "beta1": 0.7,
+      "beta2": 0.95
+    }
+  },
+  "consumed": {
+    "stage": "before_step",
+    "source": "native state before step",
+    "verified": true,
+    "binding": {
+      "run_id": "replay",
+      "step_id": "window-2",
+      "parameter_id": "actor.weight",
+      "shape": [
+        2
+      ]
+    },
+    "parameters": [
+      0.37370000062500003,
+      -0.6727250024999997
+    ],
+    "state": {
+      "kind": "initialized",
+      "step": 1,
+      "exp_avg": [
+        0.12000000000000002,
+        -0.030000000000000006
+      ],
+      "exp_avg_sq": [
+        0.008000000000000007,
+        0.0005000000000000004
+      ]
+    },
+    "hyperparameters": {
+      "lr": 0.025,
+      "eps": 1e-08,
+      "weight_decay": 0.13,
+      "beta1": 0.7,
+      "beta2": 0.95
+    }
+  },
+  "gradient": {
+    "stage": "consumed_gradient",
+    "source": "native parameter gradient before step",
+    "verified": true,
+    "binding": {
+      "run_id": "replay",
+      "step_id": "window-2",
+      "parameter_id": "actor.weight",
+      "shape": [
+        2
+      ]
+    },
+    "kind": "dense",
+    "values": [
+      0.33,
+      -0.28
+    ]
+  },
+  "after": {
+    "stage": "after_step",
+    "source": "native state after step",
+    "verified": true,
+    "binding": {
+      "run_id": "replay",
+      "step_id": "window-2",
+      "parameter_id": "actor.weight",
+      "shape": [
+        2
+      ]
+    },
+    "parameters": [
+      0.34796091832199155,
+      -0.6462958908592731
+    ],
+    "state": {
+      "kind": "initialized",
+      "step": 2,
+      "exp_avg": [
+        0.18300000000000002,
+        -0.10500000000000001
+      ],
+      "exp_avg_sq": [
+        0.013045000000000011,
+        0.004395000000000005
+      ]
+    },
+    "hyperparameters": {
+      "lr": 0.025,
+      "eps": 1e-08,
+      "weight_decay": 0.13,
+      "beta1": 0.7,
+      "beta2": 0.95
+    }
+  },
+  "execution": {
+    "optimizer": "torch.optim.AdamW",
+    "device": "cpu",
+    "dtype": "float64",
+    "layout": "dense",
+    "fused": false,
+    "foreach": false,
+    "amsgrad": false,
+    "maximize": false,
+    "capturable": false,
+    "differentiable": false,
+    "mixed_precision": false,
+    "sharded": false,
+    "step_executed": true,
+    "step_dtype": "float32",
+    "torch_version": "2.14.1+cpu"
+  }
+}

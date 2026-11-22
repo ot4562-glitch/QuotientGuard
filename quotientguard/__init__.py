@@ -8,6 +8,8 @@ from .adapters import (
     VerlRuntimeCapture,
 )
 from .benchmark import benchmark_sampled_audit
+from .adamw_audit import audit_adamw_step
+from .training_summary import summarize_training_audits
 from .certification import run_builtin_certification_suite, run_certification_suite
 from .check import check_path, check_payload
 from .compare import compare_certificates
@@ -44,6 +46,8 @@ from .objective_runtime import ObjectiveRuntimeCapture
 from .objective_benchmark import run_objective_benchmark
 
 __all__ = [
+    "audit_adamw_step",
+    "summarize_training_audits",
     "DenominatorCountSpec", "ObjectiveWindowSpec", "ObjectiveWindowBatch", "ObjectiveWindowResult", "audit_objective_window",
     "ImportanceCorrectionSpec",
     "FullObjectiveSpec", "FullObjectiveTrace", "FullObjectiveResult", "KLSpec", "ReductionSpec", "audit_full_objective",

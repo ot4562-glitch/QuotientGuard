@@ -79,6 +79,11 @@ def build_parser() -> argparse.ArgumentParser:
     window.add_argument('--json', action='store_true')
     window.add_argument('--device', default='cpu', choices=('cpu', 'cuda'))
 
+    adamw = sub.add_parser("adamw-audit", help="audit state lineage and one supplied CPU AdamW step")
+    adamw.add_argument("input", type=Path)
+    adamw.add_argument("--out", type=Path)
+    adamw.add_argument("--json", action="store_true")
+
     objective_bench = sub.add_parser("objective-benchmark", help="independent PPO controls and seeded holdout")
     objective_bench.add_argument("--out", type=Path)
 
@@ -205,6 +210,30 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.command.startswith('survey-'):
         from .survey_cli import run_survey_command
         return run_survey_command(args)
+
+    if args.command == "adamw-audit":
+        import sys
+
+        from .adamw_audit import audit_adamw_step
+
+        try:
+            output = audit_adamw_step(_load_json(args.input))
+            if args.out:
+                if (args.input.resolve() == args.out.resolve() or
+                        args.out.exists() and args.input.samefile(args.out)):
+                    raise ValueError("output must not overwrite the input trace")
+                _write_json(args.out, output)
+        except (OSError, ValueError) as exc:
+            print(f"AdamW audit input/output error: {exc}", file=sys.stderr)
+            return 2
+        if args.json:
+            print(json.dumps(output, indent=2, sort_keys=True, allow_nan=False))
+        else:
+            print(f"{output['status']} ({output['execution_scope']})")
+            for name in ("lineage", "transition"):
+                item = output[name]
+                print(f"{item['boundary']}: {item['status']} ({item['reason']})")
+        return {"MATCH": 0, "MISMATCH": 1}.get(output["status"], 2)
 
     if args.command in {'full-objective-audit', 'objective-window-audit'}:
         try:

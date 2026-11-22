@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "quotientguard"
-version = "1.2.0"
-description = "Deterministic estimator-compatibility audits and regression tests for RL/RLVR."
+version = "2.0.0"
+description = "Numerical audits for RL/RLVR objectives, gradients and explicit optimizer steps."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
