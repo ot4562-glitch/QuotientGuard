@@ -191,12 +191,14 @@ is a CI gate. **Do not change historical tags** to rewrite prior
 evidence. Roadmap and reviewer feedback are tracked separately and
 are not claims of shipped functionality.
 
-## Documentation (minimal canonical set)
+## Documentation
 
 - [Reference](docs/REFERENCE.md): estimator math, evidence levels,
   certificates, sketches, Sentinel, limitations and research scope
 - [Objective audit](docs/OBJECTIVE_AUDIT.md): v1.1 PPO contracts,
   oracle, runtime capture and diagnostic limitations
+- [AdamW audit](docs/ADAMW_AUDIT.md) explains the optimizer trace,
+  verdicts, measurement costs and migration.
 - [Integrations & CI](docs/INTEGRATIONS.md): framework adapters,
   frozen TRL identity and verifiable test hooks
 - [v1.2 validation](docs/VALIDATION_V1_2.md): accepted scope, local

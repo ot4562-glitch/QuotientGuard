@@ -43,7 +43,9 @@ Use the installed `quotientguard` package as the source of truth for estimator-c
 
 ## Interpretation Rules
 
-Report QuotientGuard results as estimator-compatibility evidence, not model-quality verdicts.
+State which contract each report checks. Estimator compatibility, objective
+agreement, and an AdamW transition have distinct evidence requirements.
+None of these reports measures downstream model quality.
 
 Never claim from a certificate alone that:
 - downstream reward or quality was harmed;
