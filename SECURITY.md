@@ -2,8 +2,8 @@
 
 ## Supported version
 
-The current published release is [v1.2.0](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v1.2.0).
-See the [README](README.md) for the current source candidate.
+The current published release is [v2.0.0](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v2.0.0).
+See the [README](README.md) for the current source and supported audit paths.
 
 ## Reporting a vulnerability
 
