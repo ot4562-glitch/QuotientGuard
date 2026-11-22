@@ -2,7 +2,7 @@
 
 ## 2.0.0 - 2026-11-22
 
-Unpublished release candidate.
+Public v2.0.0 release.
 
 - Add the read-only `audit_adamw_step` API and `adamw-audit` command for a
   single dense CPU Float64 PyTorch AdamW step. State provenance, authorization

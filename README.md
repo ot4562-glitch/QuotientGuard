@@ -4,14 +4,12 @@ QuotientGuard compares recorded RL and RLVR computations with declared
 mathematical contracts. Use it to check a loss, a gradient, an accumulation
 window, or a supported optimizer step given observations from that boundary.
 
-Current stable release: **v1.2.0** ·
-[GitHub Release](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v1.2.0) ·
+Current stable release: **v2.0.0** ·
+[GitHub Release](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v2.0.0) ·
 [Changelog](CHANGELOG.md) ·
 [Paper](https://doi.org/10.5281/zenodo.22859044)
 
-Current release candidate: **v2.0.0** (unpublished)
-
-The v2.0 candidate adds a read-only audit for one CPU Float64 AdamW step.
+QuotientGuard v2.0 adds a read-only audit for one CPU Float64 AdamW step.
 It separately checks whether the optimizer received the authorized state and
 whether it updated the state and parameter correctly using the gradient it
 actually consumed. Existing objective, gradient and accumulation reports remain
@@ -180,7 +178,7 @@ QuotientGuard tool autonomously found or certified the bug.
 | Version | Released capabilities | Evidence |
 | --- | --- | --- |
 | [v1.2.0](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v1.2.0) | Explicit PPO/GSPO/CISPO/SAPO + KL/entropy contracts, controlled native/parameter/AMP/SGD/window checks and source-only repository inspection | [v1.2 validation scope](docs/VALIDATION_V1_2.md) |
-| v2.0.0 (unpublished) | Read-only AdamW state lineage and step audits with a boundary report summary | [AdamW trace guide](docs/ADAMW_AUDIT.md) |
+| [v2.0.0](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v2.0.0) | Read-only AdamW state lineage and step audits with a boundary report summary | [AdamW trace guide](docs/ADAMW_AUDIT.md) |
 | [v1.1.0](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v1.1.0) | Optional PPO objective-aware interpretation, backward replay, numerical diagnostics; original compatibility semantics retained | [v1.1 validation](docs/VALIDATION_V1_1.md) |
 | [v1.0.0](https://github.com/ot4562-glitch/QuotientGuard/releases/tag/v1.0.0) | Exact/sampled compatibility, source-bound TRL adapter, regression/CI, Sentinel | [frozen benchmark](benchmarks/README.md) |
 

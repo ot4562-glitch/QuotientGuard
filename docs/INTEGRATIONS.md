@@ -140,7 +140,7 @@ assert_no_new_measured_gap(comparison)
 GitHub Actions example, pinned to the latest **released** tag:
 
 ```yaml
-- uses: ot4562-glitch/QuotientGuard@v1.2.0
+- uses: ot4562-glitch/QuotientGuard@v2.0.0
   with:
     input: fixtures/estimator.json
     output: quotientguard-certificate.json

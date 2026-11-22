@@ -1,7 +1,7 @@
 # Contributing to QuotientGuard
 
 QuotientGuard preserves the v1 compatibility and objective audit contracts.
-The v2.0 candidate adds a supplied-trace AdamW audit. Document the evidence
+v2.0 adds a supplied-trace AdamW audit. Document the evidence
 each result needs and preserve existing certificate statuses.
 
 ## Verify a change
