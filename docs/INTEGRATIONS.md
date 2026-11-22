@@ -1,5 +1,10 @@
 # Framework integrations and CI
 
+For a supplied optimizer step, use the [AdamW trace audit](ADAMW_AUDIT.md).
+It checks one supported CPU step without importing a Trainer or running an
+optimizer. Keep the preceding objective and window reports separate unless
+their records can be bound to the same run and step.
+
 QuotientGuard separates **source-bound reconstruction** from **explicit
 production coefficient capture**. A method name, variable name, successful
 replay, or GitHub PR does not prove which estimator actually ran. See

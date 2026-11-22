@@ -1,9 +1,8 @@
 # Contributing to QuotientGuard
 
-QuotientGuard has a stable v1 compatibility contract plus the optional v1.1
-PPO objective-aware audit. Contributions should be correctness-driven,
-reproducible and conservative about evidence; future objective support must
-not silently reinterpret existing certificate statuses.
+QuotientGuard preserves the v1 compatibility and objective audit contracts.
+The v2.0 candidate adds a supplied-trace AdamW audit. Document the evidence
+each result needs and preserve existing certificate statuses.
 
 ## Verify a change
 
@@ -12,6 +11,7 @@ python -m compileall -q quotientguard tests tools
 python -m unittest discover -s tests -v
 python -m quotientguard certify
 python tools/check_release_docs.py
+python -m quotientguard adamw-audit examples/adamw-audit.json
 ```
 
 For changes involving PPO/PyTorch, also install `.[objective]`, run

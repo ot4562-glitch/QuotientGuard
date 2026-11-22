@@ -15,6 +15,9 @@ Use the installed `quotientguard` package as the source of truth for estimator-c
    - Baseline and candidate certificates: run `quotientguard compare BASELINE CANDIDATE` with only the policy flags the user requested.
    - Snapshot certificate history: run `quotientguard sentinel ...`.
    - Repository self-test: run `quotientguard certify`.
+   - Supported CPU Float64 AdamW trace: run `quotientguard adamw-audit INPUT --json`.
+     Report state lineage and transition separately. Missing provenance leaves
+     that boundary inconclusive.
    - Frozen TRL source file: run `quotientguard verify-source SOURCE_FILE`.
 
 2. Preserve the evidence level exactly.

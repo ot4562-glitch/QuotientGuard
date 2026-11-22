@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.0.0 - 2026-11-22
+
+Unpublished release candidate.
+
+- Add the read-only `audit_adamw_step` API and `adamw-audit` command for a
+  single dense CPU Float64 PyTorch AdamW step. State provenance, authorization
+  mismatches and arithmetic transition mismatches have separate verdicts.
+- Add `summarize_training_audits` to display objective, parameter-gradient,
+  accumulation/window and optimizer reports in training order.
+- Add native cold-start and restore controls, deliberate state mutations, CLI
+  and installed-package checks, and a recorded AdamW example.
+- Existing v1.2 APIs, objective contracts and exit codes are unchanged.
+  The AdamW audit excludes fused, foreach, GPU, mixed precision and sharded paths.
+
 ## 1.2.0 - 2026-10-29
 
 Public v1.2.0 release. Acceptance evidence covers the explicitly supported

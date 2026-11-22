@@ -107,3 +107,10 @@ original Git tags, rather than duplicated in today's documentation.
 For a historical local performance measurement, see
 [benchmarks/README.md](../benchmarks/README.md). Do not equate its isolated
 audit microbenchmark with end-to-end training overhead.
+
+## AdamW API and CLI
+
+`audit_adamw_step(trace)` and `quotientguard adamw-audit INPUT --json`
+report state lineage and the numerical result of one supported step.
+`summarize_training_audits` displays each supplied boundary report with its
+original status. See the [trace schema, result codes and examples](ADAMW_AUDIT.md).
