@@ -162,11 +162,14 @@ inspection evidence remain outside the public distribution.
 ## Verified upstream fixes
 
 This table covers submissions based on QuotientGuard v2.0.0 evidence.
-GitHub had recorded no upstream merge for this work as of 2026-11-22.
+AReaL [merged its PPO masking fix](https://github.com/areal-project/AReaL/pull/1987) on 2026-11-24.
+In the pinned CPU Float32 actor-loss check, the excluded token's gradient
+changed from `NaN` to zero while the actor loss stayed at `-0.5`. This check
+exercised the loss boundary, not distributed training.
 
 | Repository | Opened issue or PR | Change | Evidence | QuotientGuard feature | Merge status |
 | --- | --- | --- | --- | --- | --- |
-| AReaL | [Issue #1986](https://github.com/areal-project/AReaL/issues/1986) · [PR #1987](https://github.com/areal-project/AReaL/pull/1987) | Mask excluded PPO log-ratios before exponentiation | [Pinned CPU before/after replay and independent gradient](https://github.com/areal-project/AReaL/pull/1987) | Full-objective audit flagged a numerical anomaly before the fix and returned `SUPPORTED` after it | PR open |
+| AReaL | [Issue #1986](https://github.com/areal-project/AReaL/issues/1986) · [PR #1987](https://github.com/areal-project/AReaL/pull/1987) | Mask excluded PPO log-ratios before exponentiation | [Pinned CPU before/after replay and independent gradient](https://github.com/areal-project/AReaL/pull/1987) | Full-objective audit flagged a numerical anomaly before the fix and returned `SUPPORTED` after it | [Merged 2026-11-24](https://github.com/areal-project/AReaL/commit/28795e1088a4120034624c17a2d2e11bf17a7730) |
 | torchtune | [PR #3021](https://github.com/meta-pytorch/torchtune/pull/3021) | Mask padding log-ratios before PPO exponentiation | [Pinned CPU before/after replay and eight overflow or sentinel regressions](https://github.com/meta-pytorch/torchtune/pull/3021) | Full-objective audit of masked PPO loss and gradients | PR open |
 | Open-Reasoner-Zero | [PR #78](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/pull/78) | Prevent excluded tokens from overflowing PPO ratios | [Pinned CPU replay with an independent per-sequence gradient](https://github.com/Open-Reasoner-Zero/Open-Reasoner-Zero/pull/78) | Full-objective audit of PPO masking and per-sequence normalization | PR open |
 | LLM-Dojo | [PR #41](https://github.com/mst272/LLM-Dojo/pull/41) | Select zero for rejected ICEPOP weights | [Pinned CPU before/after replay and four-dtype regression](https://github.com/mst272/LLM-Dojo/pull/41) | Full-objective audit with independent importance weights | PR open |
